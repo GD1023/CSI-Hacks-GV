@@ -102,8 +102,9 @@ async function updateAuthNav() {
     if (!container) return;
 
     if (session) {
+        const displayName = session.user.user_metadata?.name || session.user.email;
         container.innerHTML = `
-            <span class="nav-user text-sm text-neutral-500 px-2">${session.user.email}</span>
+            <span class="nav-user text-sm text-neutral-500 px-2">${displayName}</span>
             <a class="nav-link" href="/profile">Profile</a>
             <a class="btn btn-outline" href="#" id="nav-logout">Sign Out</a>
         `;
