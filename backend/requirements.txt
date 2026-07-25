@@ -1,0 +1,9 @@
+flask
+flask-cors
+python-dotenv
+supabase
+langchain-groq
+langchain-community
+langchain-huggingface
+faiss-cpu
+sentence-transformers

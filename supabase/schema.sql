@@ -169,6 +169,32 @@ where not exists (
 );
 
 -- ---------------------------------------------------------------------------
+-- Competitions catalog (~300 rows): the retrieval corpus for the RAG model
+-- in model.py. Shared reference data, not user-owned -- readable by anyone
+-- (including anonymous requests, since model.py's anon-key client needs to
+-- read it), but not writable by regular users. Populate the ~300 rows
+-- yourself via the Supabase table editor/CSV import or the service_role key;
+-- there's no user-facing insert path for this table by design.
+-- ---------------------------------------------------------------------------
+
+create table if not exists public.competitions (
+    id uuid primary key default gen_random_uuid(),
+    name text not null,
+    description text,
+    category text,
+    grade_levels text,
+    team_or_solo text,
+    url text
+);
+
+alter table public.competitions enable row level security;
+
+drop policy if exists "Anyone can read competitions" on public.competitions;
+create policy "Anyone can read competitions"
+    on public.competitions for select
+    using (true);
+
+-- ---------------------------------------------------------------------------
 -- Storage: transcript and school-profile PDFs.
 -- One private bucket, files stored at "<user_id>/transcript.pdf" and
 -- "<user_id>/school-profile.pdf" (upsert on re-upload, so a new file
