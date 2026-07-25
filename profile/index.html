@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="gated">
+
+    <header class="site-header">
+        <a class="brand" href="/">highschoolcompass</a>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/classes">Navigating Classes</a>
+        <a href="/clubs">Clubs</a>
+        <a href="/competitions">Competitions, Awards, and More</a>
+        <a href="/college-prep">College Prep</a>
+        <a href="/testing">Testing</a>
+        <a href="/career-advice">Career Advice</a>
+        <span id="nav-auth">
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+        </span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Your Profile</h1>
+            <p>Keep this up to date so we can personalize your career advice.</p>
+        </section>
+
+        <form id="profile-form" class="form-card">
+            <label for="email">Email</label>
+            <input type="email" id="email" disabled>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="grade">Grade</label>
+            <select id="grade" name="grade">
+                <option value="">Select a grade</option>
+                <option value="9">9th</option>
+                <option value="10">10th</option>
+                <option value="11">11th</option>
+                <option value="12">12th</option>
+            </select>
+
+            <label for="school">School</label>
+            <input type="text" id="school" name="school">
+
+            <label for="interests">Interests</label>
+            <input type="text" id="interests" name="interests" placeholder="e.g. robotics, writing, biology">
+
+            <button type="submit">Save Profile</button>
+            <p id="profile-status" class="form-status"></p>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 highschoolcompass &mdash; built by Veer &amp; Geetansh.</p>
+        <p class="footer-links"><a href="/terms">Terms &amp; Conditions</a></p>
+    </footer>
+
+    <script type="module" src="../script.js"></script>
+    <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

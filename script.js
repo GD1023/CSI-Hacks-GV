@@ -9,6 +9,7 @@ async function updateAuthNav() {
     if (session) {
         container.innerHTML = `
             <span class="nav-user">${session.user.email}</span>
+            <a href="/profile">Profile</a>
             <a href="#" id="nav-logout">Sign Out</a>
         `;
         document.getElementById('nav-logout').addEventListener('click', async (e) => {
