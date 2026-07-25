@@ -27,6 +27,85 @@ begin
     end if;
 end $$;
 
+-- ---------------------------------------------------------------------------
+-- Expanded profile fields: course recommendations, majors, and competitions.
+-- Grouped below to match the three input categories from product planning.
+-- List-type answers (course lists, extracurriculars, etc.) are stored as
+-- Postgres text[] arrays -- the profile form collects them as "one per line"
+-- textareas and profile.js splits/joins on newlines, so no separate child
+-- tables are needed for a form this size.
+-- ---------------------------------------------------------------------------
+
+-- General / cross-cutting
+alter table public.profiles add column if not exists graduation_year integer;
+alter table public.profiles add column if not exists school_type text;
+alter table public.profiles add column if not exists time_commitments text;
+alter table public.profiles add column if not exists college_list text[];
+alter table public.profiles add column if not exists personal_narrative text;
+alter table public.profiles add column if not exists additional_notes text;
+
+-- Course recommendations
+alter table public.profiles add column if not exists current_courses text[];
+alter table public.profiles add column if not exists completed_courses text[];
+alter table public.profiles add column if not exists ap_courses text[];
+alter table public.profiles add column if not exists school_profile_link text;
+alter table public.profiles add column if not exists schedule_type text;
+alter table public.profiles add column if not exists max_courses_per_term smallint;
+alter table public.profiles add column if not exists academic_strengths text[];
+alter table public.profiles add column if not exists academic_weaknesses text[];
+alter table public.profiles add column if not exists remaining_requirements text[];
+alter table public.profiles add column if not exists sat_score smallint;
+alter table public.profiles add column if not exists act_score smallint;
+alter table public.profiles add column if not exists psat_score smallint;
+
+-- Majors
+alter table public.profiles add column if not exists extracurriculars text[];
+alter table public.profiles add column if not exists clubs text[];
+alter table public.profiles add column if not exists leadership_roles text[];
+alter table public.profiles add column if not exists honors_awards text[];
+alter table public.profiles add column if not exists interest_areas text[];
+alter table public.profiles add column if not exists work_experience text[];
+alter table public.profiles add column if not exists volunteer_experience text[];
+alter table public.profiles add column if not exists intended_majors text[];
+
+-- Competitions
+alter table public.profiles add column if not exists competition_history text[];
+alter table public.profiles add column if not exists competition_hours_per_week smallint;
+alter table public.profiles add column if not exists competition_team_preference text;
+alter table public.profiles add column if not exists travel_constraints text;
+alter table public.profiles add column if not exists budget_constraints text;
+
+do $$
+begin
+    if not exists (select 1 from pg_constraint where conname = 'profiles_sat_score_check') then
+        alter table public.profiles
+            add constraint profiles_sat_score_check check (sat_score is null or (sat_score between 400 and 1600));
+    end if;
+    if not exists (select 1 from pg_constraint where conname = 'profiles_act_score_check') then
+        alter table public.profiles
+            add constraint profiles_act_score_check check (act_score is null or (act_score between 1 and 36));
+    end if;
+    if not exists (select 1 from pg_constraint where conname = 'profiles_psat_score_check') then
+        alter table public.profiles
+            add constraint profiles_psat_score_check check (psat_score is null or (psat_score between 320 and 1520));
+    end if;
+    if not exists (select 1 from pg_constraint where conname = 'profiles_school_type_check') then
+        alter table public.profiles
+            add constraint profiles_school_type_check
+            check (school_type is null or school_type in ('public', 'private', 'charter', 'homeschool', 'other'));
+    end if;
+    if not exists (select 1 from pg_constraint where conname = 'profiles_schedule_type_check') then
+        alter table public.profiles
+            add constraint profiles_schedule_type_check
+            check (schedule_type is null or schedule_type in ('traditional', 'block', 'other'));
+    end if;
+    if not exists (select 1 from pg_constraint where conname = 'profiles_competition_team_pref_check') then
+        alter table public.profiles
+            add constraint profiles_competition_team_pref_check
+            check (competition_team_preference is null or competition_team_preference in ('team', 'solo', 'no preference'));
+    end if;
+end $$;
+
 alter table public.profiles enable row level security;
 
 drop policy if exists "Users can view their own profile" on public.profiles;

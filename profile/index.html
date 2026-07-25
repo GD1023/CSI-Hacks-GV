@@ -53,7 +53,9 @@
             <p>Keep this up to date so we can personalize your career advice.</p>
         </section>
 
-        <form id="profile-form" class="form-card">
+        <form id="profile-form" class="form-card profile-form">
+            <h2>General</h2>
+
             <label for="email">Email</label>
             <input type="email" id="email" disabled>
 
@@ -69,17 +71,149 @@
                 <option value="12">12th</option>
             </select>
 
+            <label for="graduation_year">Graduation year</label>
+            <input type="number" id="graduation_year" name="graduation_year" min="2024" max="2035" placeholder="e.g. 2027">
+
             <label for="school">School</label>
             <input type="text" id="school" name="school">
 
-            <label for="interests">Interests</label>
+            <label for="school_type">School type</label>
+            <select id="school_type" name="school_type">
+                <option value="">Select a type</option>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="charter">Charter</option>
+                <option value="homeschool">Homeschool</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="interests">General interests</label>
             <input type="text" id="interests" name="interests" placeholder="e.g. robotics, writing, biology">
+
+            <label for="time_commitments">Time commitments outside school</label>
+            <input type="text" id="time_commitments" name="time_commitments" placeholder="e.g. part-time job, travel soccer, caring for siblings">
+
+            <label for="college_list">College list</label>
+            <textarea id="college_list" name="college_list" rows="3" placeholder="One school per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="personal_narrative">Personal narrative notes</label>
+            <textarea id="personal_narrative" name="personal_narrative" rows="3" placeholder="Themes, stories, or angles you're considering for essays"></textarea>
+
+            <label for="additional_notes">Anything else</label>
+            <textarea id="additional_notes" name="additional_notes" rows="3" placeholder="Anything not covered above that would help us guide you"></textarea>
+
+            <h2>Course recommendations</h2>
+
+            <label for="current_courses">Current courses</label>
+            <textarea id="current_courses" name="current_courses" rows="3" placeholder="One course per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="completed_courses">Completed courses</label>
+            <textarea id="completed_courses" name="completed_courses" rows="3" placeholder="One course per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="ap_courses">AP courses (taken or in progress)</label>
+            <textarea id="ap_courses" name="ap_courses" rows="2" placeholder="One AP course per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="remaining_requirements">Remaining graduation requirements</label>
+            <textarea id="remaining_requirements" name="remaining_requirements" rows="2" placeholder="One requirement per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="academic_strengths">Academic strengths</label>
+            <textarea id="academic_strengths" name="academic_strengths" rows="2" placeholder="e.g. Math&#10;Writing"></textarea>
+            <span class="field-hint">One subject per line.</span>
+
+            <label for="academic_weaknesses">Academic weaknesses</label>
+            <textarea id="academic_weaknesses" name="academic_weaknesses" rows="2" placeholder="e.g. Chemistry"></textarea>
+            <span class="field-hint">One subject per line.</span>
+
+            <label for="schedule_type">Schedule type</label>
+            <select id="schedule_type" name="schedule_type">
+                <option value="">Select a type</option>
+                <option value="traditional">Traditional (year-long)</option>
+                <option value="block">Block</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="max_courses_per_term">Max courses per term</label>
+            <input type="number" id="max_courses_per_term" name="max_courses_per_term" min="1" max="12" placeholder="e.g. 7">
+
+            <label for="school_profile_link">Course offerings / school profile (link)</label>
+            <input type="text" id="school_profile_link" name="school_profile_link" placeholder="Link to your school's course catalog or profile PDF">
+
+            <label for="transcript_link">Transcript (link)</label>
+            <input type="text" id="transcript_link" name="transcript_link" placeholder="Link to your transcript (e.g. Google Drive)">
 
             <label for="gpa">GPA (4.0 unweighted / 5.0 weighted max)</label>
             <input type="number" id="gpa" name="gpa" min="0" max="5" step="0.01" placeholder="e.g. 3.85">
 
-            <label for="transcript_link">Transcript (link)</label>
-            <input type="text" id="transcript_link" name="transcript_link" placeholder="Link to your transcript (e.g. Google Drive)">
+            <label for="sat_score">SAT score</label>
+            <input type="number" id="sat_score" name="sat_score" min="400" max="1600" placeholder="e.g. 1450">
+
+            <label for="act_score">ACT score</label>
+            <input type="number" id="act_score" name="act_score" min="1" max="36" placeholder="e.g. 32">
+
+            <label for="psat_score">PSAT score</label>
+            <input type="number" id="psat_score" name="psat_score" min="320" max="1520" placeholder="e.g. 1200">
+
+            <h2>Majors</h2>
+
+            <label for="extracurriculars">Extracurriculars</label>
+            <textarea id="extracurriculars" name="extracurriculars" rows="3" placeholder="One activity per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="clubs">Clubs</label>
+            <textarea id="clubs" name="clubs" rows="2" placeholder="One club per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="leadership_roles">Leadership roles</label>
+            <textarea id="leadership_roles" name="leadership_roles" rows="2" placeholder="e.g. Robotics Club &ndash; Co-President"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="honors_awards">Honors &amp; awards</label>
+            <textarea id="honors_awards" name="honors_awards" rows="2" placeholder="One honor or award per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="interest_areas">Interest areas</label>
+            <textarea id="interest_areas" name="interest_areas" rows="2" placeholder="e.g. engineering&#10;creative writing"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="work_experience">Work experience</label>
+            <textarea id="work_experience" name="work_experience" rows="2" placeholder="One job or internship per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="volunteer_experience">Volunteer experience</label>
+            <textarea id="volunteer_experience" name="volunteer_experience" rows="2" placeholder="One volunteer role per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <label for="intended_majors">Intended majors</label>
+            <textarea id="intended_majors" name="intended_majors" rows="2" placeholder="One major per line"></textarea>
+            <span class="field-hint">One per line.</span>
+
+            <h2>Competitions, awards, and more</h2>
+
+            <label for="competition_history">Competition history</label>
+            <textarea id="competition_history" name="competition_history" rows="3" placeholder="e.g. Science Olympiad Regionals 2025 &ndash; 2nd place"></textarea>
+            <span class="field-hint">One per line, with year and result if you have them.</span>
+
+            <label for="competition_hours_per_week">Hours per week available</label>
+            <input type="number" id="competition_hours_per_week" name="competition_hours_per_week" min="0" max="80" placeholder="e.g. 5">
+
+            <label for="competition_team_preference">Team or solo</label>
+            <select id="competition_team_preference" name="competition_team_preference">
+                <option value="">No preference</option>
+                <option value="team">Team</option>
+                <option value="solo">Solo</option>
+                <option value="no preference">No preference</option>
+            </select>
+
+            <label for="travel_constraints">Travel constraints</label>
+            <input type="text" id="travel_constraints" name="travel_constraints" placeholder="e.g. local/virtual only, can travel in-state">
+
+            <label for="budget_constraints">Budget constraints</label>
+            <input type="text" id="budget_constraints" name="budget_constraints" placeholder="e.g. free/low-cost options only">
 
             <button type="submit">Save Profile</button>
             <p id="profile-status" class="form-status"></p>
