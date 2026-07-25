@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 h3 {
     font-size: 1rem;
     margin-bottom: 6px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 h3 a, h4 a, h5 a {
