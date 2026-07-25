@@ -210,6 +210,10 @@ main {
     font-size: 0.95rem;
 }
 
+.nav-restricted {
+    display: none;
+}
+
 .form-status {
     text-align: center;
     min-height: 1.2em;
