@@ -117,6 +117,7 @@ end $$;
 --  - working_style: a lightweight, self-reported stand-in for a full
 --    strengths/interest inventory (e.g. Holland Code) without building an
 --    actual quiz -- still gives the model a personality/fit signal.
+
 alter table public.profiles add column if not exists college_preferences text;
 alter table public.profiles add column if not exists portfolio_link text;
 alter table public.profiles add column if not exists counselor_name text;
@@ -139,8 +140,6 @@ create policy "Users can update their own profile"
     on public.profiles for update
     using (auth.uid() = id);
 
--- Auto-create a profile row for every new signup, seeded with the "name" and
--- "grade" passed in supabase.auth.signUp()'s options.data (see signup/signup.js).
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -159,25 +158,12 @@ create trigger on_auth_user_created
     after insert on auth.users
     for each row execute procedure public.handle_new_user();
 
--- Backfill: create a (mostly empty) profile row for any existing auth.users
--- that predate the trigger above, so nobody is stuck without a profiles row.
 insert into public.profiles (id, name, grade)
 select u.id, u.raw_user_meta_data ->> 'name', u.raw_user_meta_data ->> 'grade'
 from auth.users u
 where not exists (
     select 1 from public.profiles p where p.id = u.id
 );
-
--- ---------------------------------------------------------------------------
--- Storage: transcript and school-profile PDFs.
--- One private bucket, files stored at "<user_id>/transcript.pdf" and
--- "<user_id>/school-profile.pdf" (upsert on re-upload, so a new file
--- replaces the old one at the same path). Private (not public) since
--- transcripts contain grades -- profile.js reads them back via short-lived
--- signed URLs instead of permanent public links. transcript_link and
--- school_profile_link on public.profiles store the storage path, not a URL.
--- ---------------------------------------------------------------------------
-
 insert into storage.buckets (id, name, public)
 values ('profile-documents', 'profile-documents', false)
 on conflict (id) do nothing;
