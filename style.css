@@ -34,6 +34,11 @@ h3 {
 
 a {
     color: var(--primary);
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
 }
 
 /* ---------- Header / Nav ---------- */
@@ -64,10 +69,22 @@ nav a {
     padding: 6px 10px;
     border-radius: var(--radius);
     font-size: 0.95rem;
+    display: inline-block;
+    transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 nav a:hover {
     background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+nav a:active {
+    transform: translateY(0);
+}
+
+nav a.nav-current {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
 }
 
 /* ---------- Layout ---------- */
@@ -106,6 +123,13 @@ main {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 18px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(30, 66, 101, 0.18);
+    border-color: var(--primary);
 }
 
 .card p {
@@ -131,6 +155,12 @@ main {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.veer:hover, .geetansh:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(30, 66, 101, 0.18);
 }
 
 .us {
@@ -161,13 +191,22 @@ main {
     font-weight: bold;
 }
 
-.form-card input {
+.form-card input,
+.form-card select {
     width: 100%;
     padding: 8px 10px;
     border: 1px solid var(--border);
     border-radius: 6px;
     font-family: inherit;
     font-size: 1rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(43, 93, 140, 0.15);
 }
 
 .form-card button {
@@ -181,10 +220,20 @@ main {
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .form-card button:hover {
     background: var(--primary-dark);
+}
+
+.form-card button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.form-card button:disabled {
+    opacity: 0.7;
+    cursor: wait;
 }
 
 .form-footnote {
@@ -255,10 +304,15 @@ body.gated main {
     justify-content: center;
     padding: 20px;
     z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .modal-overlay.modal-hidden {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .modal-box {
@@ -271,6 +325,12 @@ body.gated main {
     padding: 24px;
     display: flex;
     flex-direction: column;
+    transform: scale(1);
+    transition: transform 0.2s ease;
+}
+
+.modal-overlay.modal-hidden .modal-box {
+    transform: scale(0.95);
 }
 
 .modal-box h2 {
@@ -324,9 +384,27 @@ body.gated main {
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .modal-accept:disabled {
     background: var(--muted);
     cursor: not-allowed;
+}
+
+.modal-accept:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+/* ---------- Scroll-triggered reveal animation ---------- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }

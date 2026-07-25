@@ -32,6 +32,44 @@ function initTermsGate() {
     });
 }
 
+function initActiveNavLink() {
+    const path = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+
+    document.querySelectorAll('.site-header nav > a[href]').forEach((link) => {
+        const href = link.getAttribute('href').replace(/\/$/, '') || '/';
+        if (href === path) {
+            link.classList.add('nav-current');
+        }
+    });
+}
+
+function initScrollReveal() {
+    const elements = document.querySelectorAll(
+        '.card, .hero, .veer, .geetansh, .locked-card, .form-card'
+    );
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        elements.forEach((el) => el.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    elements.forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${Math.min(i, 6) * 60}ms`;
+        observer.observe(el);
+    });
+}
+
 async function updateAuthNav() {
     const container = document.getElementById('nav-auth');
     const restrictedLinks = document.querySelectorAll('.nav-restricted');
@@ -64,5 +102,7 @@ async function updateAuthNav() {
 }
 
 initTermsGate();
+initActiveNavLink();
+initScrollReveal();
 updateAuthNav();
 supabase.auth.onAuthStateChange(() => updateAuthNav());

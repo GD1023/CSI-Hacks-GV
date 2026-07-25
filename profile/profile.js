@@ -5,6 +5,7 @@ const user = session.user;
 
 const form = document.getElementById('profile-form');
 const status = document.getElementById('profile-status');
+const button = form.querySelector('button[type="submit"]');
 
 document.getElementById('email').value = user.email;
 
@@ -28,6 +29,7 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.textContent = 'Saving...';
     status.classList.remove('form-status-error');
+    button.disabled = true;
 
     const { error } = await supabase.from('profiles').upsert({
         id: user.id,
@@ -36,6 +38,8 @@ form.addEventListener('submit', async (e) => {
         school: document.getElementById('school').value,
         interests: document.getElementById('interests').value,
     });
+
+    button.disabled = false;
 
     if (error) {
         status.textContent = error.message;
