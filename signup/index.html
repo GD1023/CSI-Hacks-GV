@@ -47,7 +47,54 @@
 
     <footer class="site-footer">
         <p>&copy; 2026 highschoolcompass &mdash; built by Veer &amp; Geetansh.</p>
+        <p class="footer-links"><a href="/terms">Terms &amp; Conditions</a></p>
     </footer>
+
+    <div id="terms-modal" class="modal-overlay">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+            <h2 id="terms-modal-title">Before you continue</h2>
+            <p class="modal-subtitle">highschoolcompass is used by high schoolers, many of whom are minors.
+                Please read the summary below in full, then confirm you accept our Terms &amp; Conditions.</p>
+            <div id="terms-scroll" class="modal-scroll">
+                <h3>We collect data from minors</h3>
+                <p>Most of our users are high school students under 18, and some may be under 13. By signing up
+                    you confirm you have permission from a parent or guardian to use this site, and that if you
+                    are under 13, a parent or guardian has reviewed and approved your account.</p>
+
+                <h3>What we collect</h3>
+                <p>We collect the name, email address, and password you provide at signup, plus the classes,
+                    clubs, competitions, and interests you choose to add to your profile.</p>
+
+                <h3>Why we collect it</h3>
+                <p>We use this information only to create and secure your account, personalize the guidance we
+                    show you, and respond if you contact us for support. We do not sell your data, and we do not
+                    use it for targeted advertising.</p>
+
+                <h3>Keeping you safe</h3>
+                <p>Passwords are never stored in plain text. We only share data with the service providers that
+                    run our authentication and hosting, and only as needed to operate the site. A parent or
+                    guardian can request to view, correct, or delete a minor's data at any time by contacting
+                    us.</p>
+
+                <h3>Not professional advice</h3>
+                <p>The guidance on highschoolcompass is peer-written general information from fellow students,
+                    not professional academic, legal, financial, or counseling advice. Always confirm important
+                    decisions with your school counselor, a parent or guardian, or another qualified
+                    professional. highschoolcompass and its creators are not liable for decisions made based on
+                    content on this site.</p>
+
+                <p><a href="/terms" target="_blank" rel="noopener">Read the full Terms &amp; Conditions and
+                        Privacy Policy</a> for complete details, including data retention, your rights, and
+                    limitation of liability.</p>
+            </div>
+            <label class="modal-checkbox">
+                <input type="checkbox" id="terms-checkbox" disabled>
+                I have read the summary above (and, if under 13, have a parent or guardian's permission) and I
+                agree to the Terms &amp; Conditions.
+            </label>
+            <button type="button" id="terms-accept" class="modal-accept" disabled>Accept &amp; Continue</button>
+        </div>
+    </div>
 
     <script src="../script.js"></script>
 </body>
