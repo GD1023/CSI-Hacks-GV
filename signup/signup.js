@@ -28,7 +28,5 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
-    status.textContent = 'Account created! Check your email to confirm before logging in.';
-    form.reset();
-    button.disabled = false;
+    window.location.href = '/';
 });
