@@ -40,13 +40,25 @@ function initMobileNav() {
     if (!toggle || !nav) return;
 
     toggle.addEventListener('click', () => {
-        const isHidden = nav.classList.contains('hidden');
-        nav.classList.toggle('hidden', !isHidden);
-        nav.classList.toggle('flex', isHidden);
-        toggle.setAttribute('aria-expanded', String(isHidden));
+        const isOpen = nav.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
         if (iconOpen && iconClose) {
-            iconOpen.classList.toggle('hidden', isHidden);
-            iconClose.classList.toggle('hidden', !isHidden);
+            iconOpen.classList.toggle('hidden', isOpen);
+            iconClose.classList.toggle('hidden', !isOpen);
+        }
+    });
+
+    // Collapse the mobile menu automatically if a resize crosses into the
+    // desktop breakpoint, so it doesn't stay stuck open behind the layout.
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    desktopQuery.addEventListener('change', (e) => {
+        if (e.matches) {
+            nav.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            if (iconOpen && iconClose) {
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
         }
     });
 }
@@ -104,8 +116,7 @@ async function updateAuthNav() {
     if (session) {
         const displayName = session.user.user_metadata?.name || session.user.email;
         container.innerHTML = `
-            <span class="nav-user text-sm text-neutral-500 px-2">${displayName}</span>
-            <a class="nav-link" href="/profile">Profile</a>
+            <a class="nav-profile-badge" href="/profile"><span class="nav-user">${displayName}</span></a>
             <a class="btn btn-outline" href="#" id="nav-logout">Sign Out</a>
         `;
         document.getElementById('nav-logout').addEventListener('click', async (e) => {

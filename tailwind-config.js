@@ -102,6 +102,26 @@ tailwind.config = {
                 '.nav-restricted': {
                     display: 'none',
                 },
+                '.nav-profile-badge': {
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '0.3rem 0.65rem',
+                    fontFamily: 'Archivo, ui-sans-serif, system-ui, sans-serif',
+                    fontSize: '0.8rem',
+                    fontWeight: '600',
+                    color: '#164e3d',
+                    background: '#eff6f3',
+                    border: '1px solid #b3d9c8',
+                    borderRadius: '999px',
+                    textDecoration: 'none',
+                    lineHeight: '1.2',
+                    transition: 'background-color 0.15s ease, border-color 0.15s ease',
+                },
+                '.nav-profile-badge:hover': {
+                    background: '#d9ece3',
+                    borderColor: '#84bfa8',
+                    color: '#164e3d',
+                },
             });
         },
     ],

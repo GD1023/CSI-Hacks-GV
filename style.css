@@ -450,6 +450,40 @@ body.gated main {
     margin-bottom: 0;
 }
 
+/* ---------- Responsive site nav ----------
+   Mobile: collapsed by default, animates open/closed on toggle.
+   Desktop (>=768px): always visible, transitions disabled so the layout
+   never fights the animation while resizing across the breakpoint. */
+
+@media (max-width: 767px) {
+    .site-nav {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        visibility: hidden;
+        transition: max-height 0.3s ease, opacity 0.2s ease, visibility 0.3s;
+    }
+
+    .site-nav.nav-open {
+        max-height: 90vh;
+        opacity: 1;
+        visibility: visible;
+        overflow-y: auto;
+        padding-bottom: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .site-nav {
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: none;
+    }
+}
+
 /* ---------- Scroll-triggered reveal animation ---------- */
 
 .reveal {
