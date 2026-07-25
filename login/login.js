@@ -16,9 +16,32 @@ form.addEventListener('submit', async (e) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-        status.textContent = error.message;
         status.classList.add('form-status-error');
         button.disabled = false;
+
+        if (error.message === 'Email not confirmed') {
+            status.textContent = '';
+            status.append('Email not confirmed. Check your inbox (and spam folder) for the confirmation link, or ');
+            const resendLink = document.createElement('a');
+            resendLink.href = '#';
+            resendLink.textContent = 'resend the email';
+            resendLink.addEventListener('click', async (evt) => {
+                evt.preventDefault();
+                status.textContent = 'Resending...';
+                status.classList.remove('form-status-error');
+                const { error: resendError } = await supabase.auth.resend({ type: 'signup', email });
+                if (resendError) {
+                    status.textContent = resendError.message;
+                    status.classList.add('form-status-error');
+                } else {
+                    status.textContent = 'Confirmation email sent. Check your inbox.';
+                }
+            });
+            status.append(resendLink);
+            status.append('.');
+        } else {
+            status.textContent = error.message;
+        }
         return;
     }
 

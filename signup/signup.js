@@ -13,11 +13,12 @@ form.addEventListener('submit', async (e) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const grade = document.getElementById('grade').value;
 
     const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { data: { name } }
+        options: { data: { name, grade } }
     });
 
     if (error) {

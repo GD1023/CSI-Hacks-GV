@@ -11,7 +11,7 @@ document.getElementById('email').value = user.email;
 
 const { data: profile, error: fetchError } = await supabase
     .from('profiles')
-    .select('name, grade, school, interests')
+    .select('name, grade, school, interests, gpa, transcript_link')
     .eq('id', user.id)
     .maybeSingle();
 
@@ -23,6 +23,8 @@ if (fetchError) {
     document.getElementById('grade').value = profile.grade || '';
     document.getElementById('school').value = profile.school || '';
     document.getElementById('interests').value = profile.interests || '';
+    document.getElementById('gpa').value = profile.gpa ?? '';
+    document.getElementById('transcript_link').value = profile.transcript_link || '';
 }
 
 form.addEventListener('submit', async (e) => {
@@ -31,12 +33,16 @@ form.addEventListener('submit', async (e) => {
     status.classList.remove('form-status-error');
     button.disabled = true;
 
+    const gpaValue = document.getElementById('gpa').value;
+
     const { error } = await supabase.from('profiles').upsert({
         id: user.id,
         name: document.getElementById('name').value,
         grade: document.getElementById('grade').value,
         school: document.getElementById('school').value,
         interests: document.getElementById('interests').value,
+        gpa: gpaValue === '' ? null : Number(gpaValue),
+        transcript_link: document.getElementById('transcript_link').value,
     });
 
     button.disabled = false;
