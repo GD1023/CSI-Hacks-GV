@@ -1,0 +1,23 @@
+body{
+    background-color:aliceblue;
+    font-family:'Times New Roman', Times, serif;
+}
+
+h1, h2{
+    text-align:center;
+    font-weight:bold;
+}
+
+nav {
+  display: block;
+}
+
+.veer, .geetansh{
+    width:50%;
+    margin:0px;
+    padding:6px;
+}
+
+.us{
+    width:50%;
+}
