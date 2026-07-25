@@ -1,13 +1,26 @@
+/* ==========================================================================
+   Theme: "Reading Room" — content-first and typographic.
+   Archivo carries headings, nav, labels, and buttons. Source Serif 4 carries
+   body copy. No card shadows or heavy radius anywhere — hairline rules do
+   the separating. One pine-green accent, used only for links and controls.
+
+   Header/footer/nav are styled via Tailwind utility + component classes
+   directly in each page's HTML (see tailwind-config.js for .btn/.nav-link/
+   .container-page). Everything below covers what Tailwind utilities in the
+   markup don't: hero, cards, forms, the terms modal, and the prose template.
+   ========================================================================== */
+
 :root {
-    --bg: aliceblue;
-    --card-bg: #ffffff;
-    --primary: #2b5d8c;
-    --primary-dark: #1e4265;
-    --text: #1c1c1c;
-    --muted: #5a6570;
-    --border: #d7e2ec;
-    --radius: 10px;
-    --shadow: 0 2px 8px rgba(30, 66, 101, 0.12);
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --ink: #16171b;
+    --muted: #6b6f76;
+    --border: #e5e3de;
+    --accent: #1f6f57;
+    --accent-dark: #164e3d;
+    --error: #b3261e;
+    --font-display: 'Archivo', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-body: 'Source Serif 4', ui-serif, Georgia, serif;
 }
 
 * {
@@ -16,125 +29,124 @@
 
 body {
     background-color: var(--bg);
-    font-family: 'Times New Roman', Times, serif;
-    color: var(--text);
+    font-family: var(--font-body);
+    color: var(--ink);
     margin: 0;
     min-height: 100vh;
 }
 
-h1, h2 {
-    text-align: center;
-    font-weight: bold;
+h1, h2, h3, h4, h5, h6,
+label, button, input, select,
+.brand, .nav-user {
+    font-family: var(--font-display);
 }
 
-h3 {
-    color: var(--primary-dark);
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
     margin-top: 0;
 }
 
+h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+h3 a, h4 a, h5 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p {
+    line-height: 1.65;
+}
+
 a {
-    color: var(--primary);
+    color: var(--accent);
+    text-decoration-color: rgba(31, 111, 87, 0.35);
     transition: color 0.15s ease;
 }
 
 a:hover {
-    color: var(--primary-dark);
-}
-
-/* ---------- Header / Nav ---------- */
-
-.site-header {
-    background: var(--primary);
-    padding: 14px 24px;
-    box-shadow: var(--shadow);
-}
-
-.brand {
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
-    display: inline-block;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-}
-
-nav a:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-}
-
-nav a:active {
-    transform: translateY(0);
-}
-
-nav a.nav-current {
-    background: rgba(255, 255, 255, 0.2);
-    font-weight: bold;
+    color: var(--accent-dark);
 }
 
 /* ---------- Layout ---------- */
 
 main {
-    max-width: 1000px;
+    max-width: 72rem;
     margin: 0 auto;
-    padding: 24px 20px 48px;
+    padding: 2rem 1rem 4rem;
+}
+
+@media (min-width: 640px) {
+    main { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+    main { padding-left: 2rem; padding-right: 2rem; }
 }
 
 .hero {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px 24px;
     text-align: center;
-    margin-bottom: 28px;
+    padding: 12px 8px 36px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
 }
 
 .hero p {
     color: var(--muted);
-    font-size: 1.1rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin: 8px 0 0;
 }
+
+/* ---------- Content grid: hairline cells, no shadows ---------- */
 
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
-    margin-bottom: 28px;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    margin-bottom: 32px;
 }
 
 .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 18px 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 22px 24px;
+    transition: background-color 0.15s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(30, 66, 101, 0.18);
-    border-color: var(--primary);
+    background: rgba(31, 111, 87, 0.045);
+}
+
+.card:hover h3 a {
+    color: var(--accent);
 }
 
 .card p {
-    color: var(--text);
+    color: var(--muted);
+    font-size: 0.95rem;
     margin-bottom: 0;
+}
+
+/* Standalone informational card (not part of a grid — e.g. "our mission",
+   "your feedback is on its way") gets its own hairline box. */
+main > .card {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    margin-bottom: 28px;
+}
+
+main > .card:hover {
+    background: transparent;
 }
 
 /* ---------- About page: side-by-side team cards ---------- */
@@ -149,18 +161,11 @@ main {
 .veer, .geetansh {
     flex: 1 1 260px;
     margin: 0;
-    padding: 18px;
-    background: var(--card-bg);
+    padding: 22px;
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    border-radius: 3px;
     text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.veer:hover, .geetansh:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(30, 66, 101, 0.18);
 }
 
 .us {
@@ -169,107 +174,111 @@ main {
     object-fit: cover;
     border-radius: 50%;
     display: block;
-    margin: 0 auto 12px;
+    margin: 0 auto 14px;
 }
 
-/* ---------- Forms (login / signup) ---------- */
+/* ---------- Forms (login / signup / profile) ---------- */
 
 .form-card {
-    background: var(--card-bg);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
+    border-radius: 3px;
+    padding: 30px;
     max-width: 380px;
     margin: 0 auto 20px;
 }
 
 .form-card label {
     display: block;
-    margin-top: 14px;
-    margin-bottom: 4px;
-    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
 }
 
 .form-card input,
 .form-card select {
     width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    padding: 7px 2px;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: border-color 0.15s ease;
+}
+
+.form-card select {
+    padding: 7px 0;
 }
 
 .form-card input:focus,
 .form-card select:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(43, 93, 140, 0.15);
+    border-bottom-color: var(--accent);
 }
 
 .form-card button {
     width: 100%;
-    margin-top: 20px;
-    padding: 10px;
-    background: var(--primary);
+    margin-top: 22px;
+    padding: 11px;
+    background: var(--ink);
     color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: inherit;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--font-display);
     cursor: pointer;
-    transition: background-color 0.15s ease, transform 0.1s ease;
+    transition: background-color 0.15s ease, opacity 0.1s ease;
 }
 
 .form-card button:hover {
-    background: var(--primary-dark);
+    background: var(--accent-dark);
 }
 
 .form-card button:active:not(:disabled) {
-    transform: scale(0.97);
+    opacity: 0.85;
 }
 
 .form-card button:disabled {
-    opacity: 0.7;
+    opacity: 0.6;
     cursor: wait;
 }
 
 .form-footnote {
     text-align: center;
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
 }
 
 /* ---------- Locked / gated content ---------- */
 
 .locked-card {
-    background: var(--card-bg);
+    background: var(--surface);
     border: 1px dashed var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
+    border-radius: 3px;
+    padding: 30px;
     text-align: center;
     max-width: 480px;
     margin: 0 auto;
 }
 
-.nav-user {
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 0.95rem;
-}
-
-.nav-restricted {
-    display: none;
-}
-
 .form-status {
     text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
     min-height: 1.2em;
 }
 
 .form-status-error {
-    color: #b3261e;
+    color: var(--error);
 }
 
 /* ---------- Gated pages: hide content until auth check resolves ---------- */
@@ -278,27 +287,12 @@ body.gated main {
     display: none;
 }
 
-/* ---------- Footer ---------- */
-
-.site-footer {
-    text-align: center;
-    color: var(--muted);
-    padding: 20px;
-    border-top: 1px solid var(--border);
-    font-size: 0.9rem;
-}
-
-.footer-links {
-    margin-top: 6px;
-    margin-bottom: 0;
-}
-
 /* ---------- Terms & conditions modal ---------- */
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(28, 28, 28, 0.65);
+    background: rgba(22, 23, 27, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -316,13 +310,13 @@ body.gated main {
 }
 
 .modal-box {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
     max-width: 560px;
     width: 100%;
     max-height: 90vh;
-    padding: 24px;
+    padding: 26px;
     display: flex;
     flex-direction: column;
     transform: scale(1);
@@ -330,33 +324,34 @@ body.gated main {
 }
 
 .modal-overlay.modal-hidden .modal-box {
-    transform: scale(0.95);
+    transform: scale(0.97);
 }
 
 .modal-box h2 {
     margin-top: 0;
-    text-align: left;
+    font-size: 1.2rem;
 }
 
 .modal-subtitle {
     color: var(--muted);
-    font-size: 0.95rem;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
     margin-top: 0;
 }
 
 .modal-scroll {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 4px;
     overflow-y: auto;
     max-height: 40vh;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     font-size: 0.92rem;
 }
 
 .modal-scroll h3 {
-    font-size: 1rem;
-    color: var(--primary-dark);
+    font-size: 0.92rem;
+    color: var(--accent-dark);
     margin-bottom: 4px;
 }
 
@@ -364,10 +359,12 @@ body.gated main {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-weight: normal;
-    font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--muted);
     margin-top: 0;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .modal-checkbox input {
@@ -376,24 +373,76 @@ body.gated main {
 
 .modal-accept {
     width: 100%;
-    padding: 10px;
-    background: var(--primary);
+    padding: 11px;
+    background: var(--ink);
     color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: inherit;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--font-display);
     cursor: pointer;
-    transition: background-color 0.15s ease, transform 0.1s ease;
+    transition: background-color 0.15s ease, opacity 0.1s ease;
 }
 
 .modal-accept:disabled {
-    background: var(--muted);
+    background: var(--border);
+    color: var(--muted);
     cursor: not-allowed;
 }
 
+.modal-accept:hover:not(:disabled) {
+    background: var(--accent-dark);
+}
+
 .modal-accept:active:not(:disabled) {
-    transform: scale(0.97);
+    opacity: 0.85;
+}
+
+/* ---------- Plain prose template (Terms & Conditions, Privacy) ----------
+   Long-form reading pages skip cards/hover/shadows entirely: a single
+   readable column, hairline dividers between sections, small eyebrow
+   labels instead of boxed headings. */
+
+.prose-page {
+    max-width: 66ch;
+    margin: 0 auto;
+}
+
+.prose-section {
+    padding: 26px 0;
+    border-top: 1px solid var(--border);
+}
+
+.prose-section:first-child {
+    border-top: none;
+    padding-top: 4px;
+}
+
+.prose-eyebrow {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.prose-section h2 {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.prose-section p {
+    color: #2b2c30;
+    font-size: 0.98rem;
+    margin: 0 0 12px;
+}
+
+.prose-section p:last-child {
+    margin-bottom: 0;
 }
 
 /* ---------- Scroll-triggered reveal animation ---------- */
@@ -407,4 +456,12 @@ body.gated main {
 .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
