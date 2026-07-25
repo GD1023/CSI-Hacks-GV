@@ -8,38 +8,46 @@
 </head>
 <body>
 
-    <nav>
-    <a href="/">Home</a> |
-    <a href="/about">About Us</a> |
-    <a href="/classes">Navigating Classes</a> |
-    <a href="/clubs">Clubs</a> |
-    <a href="/competitions">Competitions, Awards, and More</a> |
-    <a href="/college-prep">College Prep</a> |
-    <a href="/career-advice">Career Advice</a> |
-    <a href="/login">Login</a> |
-    <a href="/signup">Sign Up</a>
-    </nav>
+    <header class="site-header">
+        <a class="brand" href="/">High School Helper</a>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/classes">Navigating Classes</a>
+        <a href="/clubs">Clubs</a>
+        <a href="/competitions">Competitions, Awards, and More</a>
+        <a href="/college-prep">College Prep</a>
+        <a href="/career-advice">Career Advice</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+        </nav>
+    </header>
 
-    <h1>Sign Up</h1>
-    <p>Create an account to get customized feedback and career advice.</p>
+    <main>
+        <section class="hero">
+            <h1>Sign Up</h1>
+            <p>Create an account to get customized feedback and career advice.</p>
+        </section>
 
-    <!-- Placeholder form only -- not wired up to any backend yet -->
-    <form id="signup-form">
-        <p>
-            <label for="name">Name</label><br>
+        <!-- Placeholder form only -- not wired up to any backend yet -->
+        <form id="signup-form" class="form-card">
+            <label for="name">Name</label>
             <input type="text" id="name" name="name">
-        </p>
-        <p>
-            <label for="email">Email</label><br>
+
+            <label for="email">Email</label>
             <input type="email" id="email" name="email">
-        </p>
-        <p>
-            <label for="password">Password</label><br>
+
+            <label for="password">Password</label>
             <input type="password" id="password" name="password">
-        </p>
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="/login">Log in here</a>.</p>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="form-footnote">Already have an account? <a href="/login">Log in here</a>.</p>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 High School Helper &mdash; built by Veer &amp; Geetansh.</p>
+    </footer>
 
     <script src="../script.js"></script>
 </body>

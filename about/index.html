@@ -9,35 +9,52 @@
 </head>
 <body>
 
-    <nav>
-    <a href="/">Home</a> |
-    <a href="/about">About Us</a> |
-    <a href="/classes">Navigating Classes</a> |
-    <a href="/clubs">Clubs</a> |
-    <a href="/competitions">Competitions, Awards, and More</a> |
-    <a href="/college-prep">College Prep</a> |
-    <a href="/career-advice">Career Advice</a> |
-    <a href="/login">Login</a> |
-    <a href="/signup">Sign Up</a>
-    </nav>
+    <header class="site-header">
+        <a class="brand" href="/">High School Helper</a>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/classes">Navigating Classes</a>
+        <a href="/clubs">Clubs</a>
+        <a href="/competitions">Competitions, Awards, and More</a>
+        <a href="/college-prep">College Prep</a>
+        <a href="/career-advice">Career Advice</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+        </nav>
+    </header>
 
-    <h1>About Us</h1>
-    <h2>Meet the team</h2>
-    <p>We are Veer and Geetansh, two highschoolers in the Bay Area.</p>
-    <h2>Our mission</h2>
-    <p>We created this so that...</p>
-    <h2>Our experience</h2>
-    <div id="experiences">
-        <div class="veer">
-            <img class="us" src="../media/veerpic.jpg">
-            <p>I'm Veer, a rising senior. Currently, I'm...</p>
-        </div>
-        <div class="geetansh">
-            <img class="us" src="../media/gdpic.jpg">
-            <p>I'm Geetansh, and I'm also a rising senior who is currently...</p>
+    <main>
+        <section class="hero">
+            <h1>About Us</h1>
+            <p>We are Veer and Geetansh, two highschoolers in the Bay Area.</p>
+        </section>
 
+        <div class="card">
+            <h2>Our mission</h2>
+            <p>We created this so that other high schoolers have one place to go for advice on classes, clubs,
+                competitions, and college prep, instead of piecing it together from a dozen different sources.</p>
         </div>
-    </div>
+
+        <h2>Our experience</h2>
+        <div id="experiences">
+            <div class="veer">
+                <img class="us" src="../media/veerpic.jpg">
+                <h3>Veer</h3>
+                <p>I'm Veer, a rising senior. Currently, I'm...</p>
+            </div>
+            <div class="geetansh">
+                <img class="us" src="../media/gdpic.jpg">
+                <h3>Geetansh</h3>
+                <p>I'm Geetansh, and I'm also a rising senior who is currently...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 High School Helper &mdash; built by Veer &amp; Geetansh.</p>
+    </footer>
+
     <!-- Link external JavaScript file here -->
     <script src="../script.js"></script>
 </body>
