@@ -1,9 +1,13 @@
 import { supabase } from '../supabase-client.js';
 import { fetchProfileFields, renderList, renderText } from '../profile-view.js';
 
-// Points at the Flask backend (app.py) run locally during development --
-// update this once the backend has a real deployed URL.
-const API_BASE = 'http://localhost:5000';
+// Local dev talks to the Flask server on localhost; the deployed site talks to
+// the Render-hosted API. Update the onrender.com URL below once the Render
+// service is created (the exact subdomain depends on the service name you
+// pick, which must be globally unique -- Render shows you the real URL after
+// creation).
+const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const API_BASE = isLocal ? 'http://localhost:5000' : 'https://high-school-compass-api.onrender.com';
 
 const SECTIONS = [
     { key: 'courses', title: 'Courses & Rigor' },
