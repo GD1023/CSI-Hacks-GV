@@ -204,6 +204,21 @@ main {
     margin: 0 auto;
 }
 
+.nav-user {
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+}
+
+.form-status {
+    text-align: center;
+    min-height: 1.2em;
+}
+
+.form-status-error {
+    color: #b3261e;
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {

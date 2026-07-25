@@ -18,8 +18,10 @@
         <a href="/competitions">Competitions, Awards, and More</a>
         <a href="/college-prep">College Prep</a>
         <a href="/career-advice">Career Advice</a>
+        <span id="nav-auth">
         <a href="/login">Login</a>
         <a href="/signup">Sign Up</a>
+        </span>
         </nav>
     </header>
 
@@ -41,6 +43,7 @@
             <input type="password" id="password" name="password">
 
             <button type="submit">Sign Up</button>
+            <p id="signup-status" class="form-status"></p>
         </form>
         <p class="form-footnote">Already have an account? <a href="/login">Log in here</a>.</p>
     </main>
@@ -49,6 +52,7 @@
         <p>&copy; 2026 highschoolcompass &mdash; built by Veer &amp; Geetansh.</p>
     </footer>
 
-    <script src="../script.js"></script>
+    <script type="module" src="../script.js"></script>
+    <script type="module" src="signup.js"></script>
 </body>
 </html>
