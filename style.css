@@ -58,6 +58,10 @@ h3 a, h4 a, h5 a {
     color: inherit;
 }
 
+.aboutus{
+    line-height: 50px;
+}
+
 p {
     line-height: 1.65;
 }
