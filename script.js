@@ -32,6 +32,25 @@ function initTermsGate() {
     });
 }
 
+function initMobileNav() {
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('site-nav');
+    const iconOpen = document.getElementById('nav-icon-open');
+    const iconClose = document.getElementById('nav-icon-close');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', () => {
+        const isHidden = nav.classList.contains('hidden');
+        nav.classList.toggle('hidden', !isHidden);
+        nav.classList.toggle('flex', isHidden);
+        toggle.setAttribute('aria-expanded', String(isHidden));
+        if (iconOpen && iconClose) {
+            iconOpen.classList.toggle('hidden', isHidden);
+            iconClose.classList.toggle('hidden', !isHidden);
+        }
+    });
+}
+
 function initActiveNavLink() {
     const path = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
 
@@ -84,9 +103,9 @@ async function updateAuthNav() {
 
     if (session) {
         container.innerHTML = `
-            <span class="nav-user">${session.user.email}</span>
-            <a href="/profile">Profile</a>
-            <a href="#" id="nav-logout">Sign Out</a>
+            <span class="nav-user text-sm text-neutral-500 px-2">${session.user.email}</span>
+            <a class="nav-link" href="/profile">Profile</a>
+            <a class="btn btn-outline" href="#" id="nav-logout">Sign Out</a>
         `;
         document.getElementById('nav-logout').addEventListener('click', async (e) => {
             e.preventDefault();
@@ -95,13 +114,14 @@ async function updateAuthNav() {
         });
     } else {
         container.innerHTML = `
-            <a href="/login">Login</a>
-            <a href="/signup">Sign Up</a>
+            <a class="btn btn-ghost" href="/login">Login</a>
+            <a class="btn btn-primary" href="/signup">Sign Up</a>
         `;
     }
 }
 
 initTermsGate();
+initMobileNav();
 initActiveNavLink();
 initScrollReveal();
 updateAuthNav();
