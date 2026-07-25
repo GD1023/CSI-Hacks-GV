@@ -1,18 +1,34 @@
 import { supabase } from './supabase-client.js';
 
-function initTermsModal() {
+function initTermsGate() {
     const modal = document.getElementById('terms-modal');
     if (!modal) return;
 
+    const form = document.querySelector('form.form-card');
     const checkbox = document.getElementById('terms-checkbox');
     const acceptBtn = document.getElementById('terms-accept');
+    if (!form || !checkbox || !acceptBtn) return;
+
+    let accepted = false;
 
     checkbox.addEventListener('change', () => {
         acceptBtn.disabled = !checkbox.checked;
     });
 
+    // Runs before login.js/signup.js's own submit handler (script.js loads first),
+    // so the first click is intercepted and the real submit only happens after accepting.
+    form.addEventListener('submit', (e) => {
+        if (!accepted) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            modal.classList.remove('modal-hidden');
+        }
+    });
+
     acceptBtn.addEventListener('click', () => {
+        accepted = true;
         modal.classList.add('modal-hidden');
+        form.requestSubmit();
     });
 }
 
@@ -47,6 +63,6 @@ async function updateAuthNav() {
     }
 }
 
-initTermsModal();
+initTermsGate();
 updateAuthNav();
 supabase.auth.onAuthStateChange(() => updateAuthNav());
