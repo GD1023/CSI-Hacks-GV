@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,17 @@
             <h1>Testing</h1>
             <p>What to know about the SAT, ACT, PSAT, and AP exams.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your Scores</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <p class="profile-data-meta" style="margin-top:0;border-top:none;padding-top:0;">
+                SAT: <strong id="pd-sat"></strong> &middot;
+                ACT: <strong id="pd-act"></strong> &middot;
+                PSAT: <strong id="pd-psat"></strong>
+            </p>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -140,5 +152,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/testing/testing.js"></script>
 </body>
 </html>

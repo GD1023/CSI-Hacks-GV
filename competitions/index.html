@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,28 @@
             <h1>Competitions, Awards, and More</h1>
             <p>Push your skills further and stand out with a strong track record.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your Awards &amp; Competitions</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <div class="profile-data-grid">
+                <div>
+                    <h3>Honors &amp; awards</h3>
+                    <div id="pd-honors-awards"></div>
+                </div>
+                <div>
+                    <h3>Competition history</h3>
+                    <div id="pd-competition-history"></div>
+                </div>
+            </div>
+            <p class="profile-data-meta">
+                Hours/week available: <strong id="pd-competition-hours"></strong> &middot;
+                Team/solo preference: <strong id="pd-competition-team-pref"></strong> &middot;
+                Travel constraints: <strong id="pd-travel-constraints"></strong> &middot;
+                Budget constraints: <strong id="pd-budget-constraints"></strong>
+            </p>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -87,5 +110,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/competitions/competitions.js"></script>
 </body>
 </html>

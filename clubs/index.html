@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,22 @@
             <h1>Clubs</h1>
             <p>Find your people, build real skills, and get involved outside the classroom.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your Clubs</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <div class="profile-data-grid">
+                <div>
+                    <h3>Clubs</h3>
+                    <div id="pd-clubs"></div>
+                </div>
+                <div>
+                    <h3>Leadership roles</h3>
+                    <div id="pd-leadership-roles"></div>
+                </div>
+            </div>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -86,5 +103,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/clubs/clubs.js"></script>
 </body>
 </html>

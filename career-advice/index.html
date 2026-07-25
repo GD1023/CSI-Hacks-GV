@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,25 @@
             <h1>Career Advice</h1>
             <p>Personalized feedback on where your interests and strengths could take you.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your Career Signals</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <div class="profile-data-grid">
+                <div>
+                    <h3>Intended majors</h3>
+                    <div id="pd-intended-majors"></div>
+                </div>
+                <div>
+                    <h3>Interest areas</h3>
+                    <div id="pd-interest-areas"></div>
+                </div>
+            </div>
+            <p class="profile-data-meta">
+                Working style: <strong id="pd-working-style"></strong>
+            </p>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <!-- Placeholder: real personalized feedback will come from the profile system once it's built -->
         <div class="card">
@@ -70,5 +90,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/career-advice/career-advice.js"></script>
 </body>
 </html>
