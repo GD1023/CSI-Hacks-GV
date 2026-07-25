@@ -7,60 +7,48 @@
     <!-- Link external CSS stylesheet here -->
     <link rel="stylesheet" href="../style.css">
 </head>
-<body class="gated">
+<body>
 
-    <header class="site-header">
-        <a class="brand" href="/">highschoolcompass</a>
-        <nav>
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/classes">Navigating Classes</a>
-        <a href="/clubs">Clubs</a>
-        <a href="/competitions">Competitions, Awards, and More</a>
-        <a href="/college-prep">College Prep</a>
-        <a href="/testing">Testing</a>
-        <a href="/career-advice">Career Advice</a>
-        <span id="nav-auth">
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up</a>
-        </span>
-        </nav>
-    </header>
+    <h1>About Us</h1>
+    <h2>Meet the team</h2>
+    <p>We are Veer and Geetansh, two highschoolers in the Bay Area.</p>
+    <h2>Our mission</h2>
+    <p>We created this so that...</p>
+    <h2>Our experience</h2>
+    <div id="experiences">
+        <div class="veer">
+            <img class="us" src="../media/veerpic.jpg">
+            <p>Veer is a rising senior at Mission San Jose High School with a 4.0 unweighted GPA through maximum academic rigor. Some of his courses include multivariable calculus and linear algebra, completed a year ahead of the typical timeline as an 11th grader, in addition to many AP courses.</p>
+            <h3>Test Scores</h3>
+            <ul>
+                <li>SAT: 1580/1600</li>
+                <li>ACT: 36/36 (all sections)</li>
+                <li>PSAT: 1520/1520 (NMSF)</li>
+                <li>APs: Microeconomics (5), Macroeconomics (5), Psychology (5), Calculus BC (5), World History (5), US History (5), Chemistry (5), Computer Science A (5), Environmental Science (A)</li>
+            </ul>
+            <h3>Awards and Competitions</h3>
+            <ul>
+                <li>AMC 10/12 &RightArrow; AIME Qualifier</li>
+                <li>Stanford Math Tournament, Berkeley Math Tournament Honorable Mentions</li>
+                <li>Modeling the Future Challenge 3rd place nationally</li>
+            </ul>
+            <h3>Clubs and Activities</h3>
+            <ul>
+                <li>Tutoring (100+ hours)</li>
+                <li>STEM Success Co-President</li>
+                <li>Predictive Modeling Co-Founder, Co-President</li>
 
-    <main>
-        <section class="hero">
-            <h1>About Us</h1>
-            <p>We are Veer and Geetansh, two highschoolers in the Bay Area.</p>
-        </section>
-
-        <div class="card">
-            <h2>Our mission</h2>
-            <p>We created this so that other high schoolers have one place to go for advice on classes, clubs,
-                competitions, and college prep, instead of piecing it together from a dozen different sources.</p>
+                <li>Rocketry Vice President</li>
+                <li>AI Club Vice President</li>
+            </ul>
         </div>
+        <div class="geetansh">
+            <img class="us" src="../media/gdpic.jpg">
+            <p>I'm Geetansh, and I'm also a rising senior who is currently...</p>
 
-        <h2>Our experience</h2>
-        <div id="experiences">
-            <div class="veer">
-                <img class="us" src="../media/veerpic.jpg">
-                <h3>Veer</h3>
-                <p>I'm Veer, a rising senior. Currently, I'm...</p>
-            </div>
-            <div class="geetansh">
-                <img class="us" src="../media/gdpic.jpg">
-                <h3>Geetansh</h3>
-                <p>I'm Geetansh, and I'm also a rising senior who has a strong passion in technology, mathematics, and artificial intelligene./n</p>
-            </div>
         </div>
-    </main>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 highschoolcompass built by Veer &amp; Geetansh.</p>
-        <p class="footer-links"><a href="/terms">Terms &amp; Conditions</a></p>
-    </footer>
-
+    </div>
     <!-- Link external JavaScript file here -->
-    <script type="module" src="../script.js"></script>
-    <script type="module" src="../auth-guard.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
