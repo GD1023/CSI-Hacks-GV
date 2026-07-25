@@ -1,4 +1,5 @@
 import { supabase } from '../supabase-client.js';
+import { fetchProfileFields, renderList, renderText } from '../profile-view.js';
 
 // Points at the Flask backend (app.py) run locally during development --
 // update this once the backend has a real deployed URL.
@@ -31,6 +32,11 @@ const { data: { session } } = await supabase.auth.getSession();
 if (!session) {
     renderError('Please log in to see your personalized feedback.');
 } else {
+    const profile = await fetchProfileFields(session.user.id, ['intended_majors', 'interest_areas', 'working_style']);
+    renderList('pd-intended-majors', profile.intended_majors, 'No intended majors added yet.');
+    renderList('pd-interest-areas', profile.interest_areas, 'No interest areas added yet.');
+    renderText('pd-working-style', profile.working_style, 'Not set');
+
     try {
         const response = await fetch(`${API_BASE}/advice`, {
             method: 'POST',

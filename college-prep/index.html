@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,24 @@
             <h1>College Prep</h1>
             <p>Get ahead on applications, testing, and everything in between.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your College Prep</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <div class="profile-data-grid">
+                <div>
+                    <h3>College list</h3>
+                    <div id="pd-college-list"></div>
+                </div>
+            </div>
+            <p class="profile-data-meta">
+                Preferences: <strong id="pd-college-preferences"></strong> &middot;
+                Counselor: <strong id="pd-counselor-name"></strong> &middot;
+                Portfolio: <span id="pd-portfolio-link"></span> &middot;
+                Transcript: <span id="pd-transcript-link"></span>
+            </p>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -87,5 +106,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/college-prep/college-prep.js"></script>
 </body>
 </html>

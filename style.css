@@ -322,6 +322,85 @@ main > .card:hover {
     font-size: 0.9rem;
 }
 
+/* ---------- Profile data cards (courses/extracurriculars/etc. pulled
+   from the signed-in user's profile, shown above the static advice
+   content on each restricted page) ---------- */
+
+.profile-data-card {
+    padding: 26px 28px;
+}
+
+.profile-data-card h2 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.profile-data-intro {
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin: 0 0 18px;
+}
+
+.profile-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.profile-data-grid h3 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-family: var(--font-display);
+    margin-bottom: 8px;
+}
+
+.profile-data-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.92rem;
+}
+
+.profile-data-list li {
+    padding: 5px 0;
+    border-top: 1px solid var(--border);
+}
+
+.profile-data-list li:first-child {
+    border-top: none;
+}
+
+.profile-data-empty {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.profile-data-meta {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+}
+
+.profile-data-meta strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.profile-data-edit {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+}
+
 /* ---------- Locked / gated content ---------- */
 
 .locked-card {

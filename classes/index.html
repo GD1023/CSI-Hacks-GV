@@ -36,6 +36,7 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link nav-restricted" href="/classes">Courses</a>
         <a class="nav-link nav-restricted" href="/clubs">Clubs</a>
+        <a class="nav-link nav-restricted" href="/extracurriculars">Extracurriculars</a>
         <a class="nav-link nav-restricted" href="/competitions">Awards</a>
         <a class="nav-link nav-restricted" href="/college-prep">Colleges</a>
         <a class="nav-link nav-restricted" href="/testing">Testing</a>
@@ -52,6 +53,44 @@
             <h1>Navigating Classes</h1>
             <p>A quick guide to building a schedule that actually works for you.</p>
         </section>
+
+        <div class="card profile-data-card">
+            <h2>Your Courses</h2>
+            <p class="profile-data-intro">Pulled from your profile.</p>
+            <div class="profile-data-grid">
+                <div>
+                    <h3>Current courses</h3>
+                    <div id="pd-current-courses"></div>
+                </div>
+                <div>
+                    <h3>Completed courses</h3>
+                    <div id="pd-completed-courses"></div>
+                </div>
+                <div>
+                    <h3>AP courses</h3>
+                    <div id="pd-ap-courses"></div>
+                </div>
+                <div>
+                    <h3>Remaining requirements</h3>
+                    <div id="pd-remaining-requirements"></div>
+                </div>
+                <div>
+                    <h3>Academic strengths</h3>
+                    <div id="pd-academic-strengths"></div>
+                </div>
+                <div>
+                    <h3>Academic weaknesses</h3>
+                    <div id="pd-academic-weaknesses"></div>
+                </div>
+            </div>
+            <p class="profile-data-meta">
+                GPA: <strong id="pd-gpa"></strong> &middot;
+                Schedule type: <strong id="pd-schedule-type"></strong> &middot;
+                Max courses/term: <strong id="pd-max-courses"></strong> &middot;
+                School profile: <span id="pd-school-profile"></span>
+            </p>
+            <p class="profile-data-edit"><a href="/profile">Edit in your profile &rarr;</a></p>
+        </div>
 
         <div class="card-grid">
             <div class="card">
@@ -86,5 +125,6 @@
 
     <script type="module" src="../script.js"></script>
     <script type="module" src="../auth-guard.js"></script>
+    <script type="module" src="/classes/classes.js"></script>
 </body>
 </html>
