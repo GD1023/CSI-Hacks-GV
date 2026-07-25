@@ -6,7 +6,7 @@
     <title>Career Advice</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="gated">
 
     <header class="site-header">
         <a class="brand" href="/">highschoolcompass</a>
@@ -17,6 +17,7 @@
         <a href="/clubs">Clubs</a>
         <a href="/competitions">Competitions, Awards, and More</a>
         <a href="/college-prep">College Prep</a>
+        <a href="/testing">Testing</a>
         <a href="/career-advice">Career Advice</a>
         <span id="nav-auth">
         <a href="/login">Login</a>
@@ -31,12 +32,11 @@
             <p>Personalized feedback on where your interests and strengths could take you.</p>
         </section>
 
-        <!-- Placeholder: real content here will come from the account system once it's built -->
-        <div class="locked-card">
-            <h3>This page is locked</h3>
-            <p>Log in to unlock personalized career feedback based on your classes, clubs, and interests.</p>
-            <p class="form-footnote"><a href="/login">Log in</a> or <a href="/signup">sign up</a> to
-                continue.</p>
+        <!-- Placeholder: real personalized feedback will come from the profile system once it's built -->
+        <div class="card">
+            <h3>Your feedback is on its way</h3>
+            <p>We're still building out the part of this page that looks at your classes, clubs, and
+                interests to suggest careers worth exploring. Check back soon.</p>
         </div>
     </main>
 
@@ -45,6 +45,6 @@
     </footer>
 
     <script type="module" src="../script.js"></script>
-    <script type="module" src="career-advice.js"></script>
+    <script type="module" src="../auth-guard.js"></script>
 </body>
 </html>
