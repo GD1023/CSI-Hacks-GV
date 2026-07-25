@@ -16,32 +16,37 @@ function initTermsModal() {
     });
 }
 
-function initNavAuth() {
-    const navAuth = document.getElementById('nav-auth');
+async function updateAuthNav() {
+    const container = document.getElementById('nav-auth');
     const restrictedLinks = document.querySelectorAll('.nav-restricted');
 
-    function applyAuthState(session) {
-        restrictedLinks.forEach((link) => {
-            link.style.display = session ? 'inline' : 'none';
+    const { data: { session } } = await supabase.auth.getSession();
+
+    restrictedLinks.forEach((link) => {
+        link.style.display = session ? 'inline' : 'none';
+    });
+
+    if (!container) return;
+
+    if (session) {
+        container.innerHTML = `
+            <span class="nav-user">${session.user.email}</span>
+            <a href="/profile">Profile</a>
+            <a href="#" id="nav-logout">Sign Out</a>
+        `;
+        document.getElementById('nav-logout').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await supabase.auth.signOut();
+            window.location.href = '/';
         });
-
-        if (!navAuth) return;
-
-        if (session) {
-            navAuth.innerHTML = '<a href="#" id="logout-link">Log Out</a>';
-            document.getElementById('logout-link').addEventListener('click', async (e) => {
-                e.preventDefault();
-                await supabase.auth.signOut();
-                window.location.href = '/';
-            });
-        } else {
-            navAuth.innerHTML = '<a href="/login">Login</a><a href="/signup">Sign Up</a>';
-        }
+    } else {
+        container.innerHTML = `
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        `;
     }
-
-    supabase.auth.getSession().then(({ data: { session } }) => applyAuthState(session));
-    supabase.auth.onAuthStateChange((_event, session) => applyAuthState(session));
 }
 
 initTermsModal();
-initNavAuth();
+updateAuthNav();
+supabase.auth.onAuthStateChange(() => updateAuthNav());

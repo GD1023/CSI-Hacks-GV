@@ -223,6 +223,12 @@ main {
     color: #b3261e;
 }
 
+/* ---------- Gated pages: hide content until auth check resolves ---------- */
+
+body.gated main {
+    display: none;
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
