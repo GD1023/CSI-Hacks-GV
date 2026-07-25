@@ -53,6 +53,11 @@
             <p>Keep this up to date so we can personalize your career advice.</p>
         </section>
 
+        <div class="form-notice">
+            <strong>Changes are not saved automatically.</strong> Click <strong>Save Profile</strong> at the
+            bottom of this page before you navigate away, or your edits will be lost.
+        </div>
+
         <form id="profile-form" class="form-card profile-form">
             <h2>General</h2>
 
@@ -93,9 +98,18 @@
             <label for="time_commitments">Time commitments outside school</label>
             <input type="text" id="time_commitments" name="time_commitments" placeholder="e.g. part-time job, travel soccer, caring for siblings">
 
+            <label for="counselor_name">School counselor's name</label>
+            <input type="text" id="counselor_name" name="counselor_name" placeholder="e.g. Ms. Alvarez">
+
+            <label for="working_style">How you like to work or learn</label>
+            <input type="text" id="working_style" name="working_style" placeholder="e.g. hands-on projects, structured deadlines, working in a team">
+
             <label for="college_list">College list</label>
             <textarea id="college_list" name="college_list" rows="3" placeholder="One school per line"></textarea>
             <span class="field-hint">One per line.</span>
+
+            <label for="college_preferences">College preferences</label>
+            <input type="text" id="college_preferences" name="college_preferences" placeholder="e.g. mid-size, suburban, public, West Coast">
 
             <label for="personal_narrative">Personal narrative notes</label>
             <textarea id="personal_narrative" name="personal_narrative" rows="3" placeholder="Themes, stories, or angles you're considering for essays"></textarea>
@@ -140,11 +154,15 @@
             <label for="max_courses_per_term">Max courses per term</label>
             <input type="number" id="max_courses_per_term" name="max_courses_per_term" min="1" max="12" placeholder="e.g. 7">
 
-            <label for="school_profile_link">Course offerings / school profile (link)</label>
-            <input type="text" id="school_profile_link" name="school_profile_link" placeholder="Link to your school's course catalog or profile PDF">
+            <label for="school_profile_file">Course offerings / school profile (PDF)</label>
+            <input type="file" id="school_profile_file" name="school_profile_file" accept="application/pdf">
+            <span class="field-hint" id="school_profile_current">No file uploaded yet.</span>
+            <span class="field-hint">Uploading a new PDF replaces the current one.</span>
 
-            <label for="transcript_link">Transcript (link)</label>
-            <input type="text" id="transcript_link" name="transcript_link" placeholder="Link to your transcript (e.g. Google Drive)">
+            <label for="transcript_file">Transcript (PDF)</label>
+            <input type="file" id="transcript_file" name="transcript_file" accept="application/pdf">
+            <span class="field-hint" id="transcript_current">No file uploaded yet.</span>
+            <span class="field-hint">Uploading a new PDF replaces the current one.</span>
 
             <label for="gpa">GPA (4.0 unweighted / 5.0 weighted max)</label>
             <input type="number" id="gpa" name="gpa" min="0" max="5" step="0.01" placeholder="e.g. 3.85">
@@ -191,6 +209,9 @@
             <label for="intended_majors">Intended majors</label>
             <textarea id="intended_majors" name="intended_majors" rows="2" placeholder="One major per line"></textarea>
             <span class="field-hint">One per line.</span>
+
+            <label for="portfolio_link">Portfolio or work samples (link)</label>
+            <input type="text" id="portfolio_link" name="portfolio_link" placeholder="e.g. a portfolio site, GitHub, or a folder of writing samples">
 
             <h2>Competitions, awards, and more</h2>
 

@@ -106,6 +106,22 @@ begin
     end if;
 end $$;
 
+-- Additional fields, added after reviewing what would help the RAG model
+-- guide students beyond the original input list:
+--  - college_preferences: size/setting/region/public-private fit, feeds the
+--    "develop a college list" senior-year milestone alongside college_list.
+--  - portfolio_link: creative/technical majors are often better judged by a
+--    work sample than by course list or GPA alone.
+--  - counselor_name: lets generated guidance say "ask <name> about X" instead
+--    of a generic "talk to your counselor."
+--  - working_style: a lightweight, self-reported stand-in for a full
+--    strengths/interest inventory (e.g. Holland Code) without building an
+--    actual quiz -- still gives the model a personality/fit signal.
+alter table public.profiles add column if not exists college_preferences text;
+alter table public.profiles add column if not exists portfolio_link text;
+alter table public.profiles add column if not exists counselor_name text;
+alter table public.profiles add column if not exists working_style text;
+
 alter table public.profiles enable row level security;
 
 drop policy if exists "Users can view their own profile" on public.profiles;
@@ -151,3 +167,49 @@ from auth.users u
 where not exists (
     select 1 from public.profiles p where p.id = u.id
 );
+
+-- ---------------------------------------------------------------------------
+-- Storage: transcript and school-profile PDFs.
+-- One private bucket, files stored at "<user_id>/transcript.pdf" and
+-- "<user_id>/school-profile.pdf" (upsert on re-upload, so a new file
+-- replaces the old one at the same path). Private (not public) since
+-- transcripts contain grades -- profile.js reads them back via short-lived
+-- signed URLs instead of permanent public links. transcript_link and
+-- school_profile_link on public.profiles store the storage path, not a URL.
+-- ---------------------------------------------------------------------------
+
+insert into storage.buckets (id, name, public)
+values ('profile-documents', 'profile-documents', false)
+on conflict (id) do nothing;
+
+drop policy if exists "Users can upload their own documents" on storage.objects;
+create policy "Users can upload their own documents"
+    on storage.objects for insert
+    with check (
+        bucket_id = 'profile-documents'
+        and (storage.foldername(name))[1] = auth.uid()::text
+    );
+
+drop policy if exists "Users can update their own documents" on storage.objects;
+create policy "Users can update their own documents"
+    on storage.objects for update
+    using (
+        bucket_id = 'profile-documents'
+        and (storage.foldername(name))[1] = auth.uid()::text
+    );
+
+drop policy if exists "Users can view their own documents" on storage.objects;
+create policy "Users can view their own documents"
+    on storage.objects for select
+    using (
+        bucket_id = 'profile-documents'
+        and (storage.foldername(name))[1] = auth.uid()::text
+    );
+
+drop policy if exists "Users can delete their own documents" on storage.objects;
+create policy "Users can delete their own documents"
+    on storage.objects for delete
+    using (
+        bucket_id = 'profile-documents'
+        and (storage.foldername(name))[1] = auth.uid()::text
+    );
