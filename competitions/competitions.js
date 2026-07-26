@@ -1,5 +1,6 @@
 import { supabase } from '../supabase-client.js';
 import { fetchProfileFields, renderList, renderText } from '../profile-view.js';
+import { renderAdvice } from '../advice-client.js';
 
 const { data: { session } } = await supabase.auth.getSession();
 
@@ -14,3 +15,4 @@ renderText('pd-competition-hours', profile.competition_hours_per_week, 'Not set'
 renderText('pd-competition-team-pref', profile.competition_team_preference, 'Not set');
 renderText('pd-travel-constraints', profile.travel_constraints, 'Not set');
 renderText('pd-budget-constraints', profile.budget_constraints, 'Not set');
+renderAdvice('ai-advice', 'competitions');
