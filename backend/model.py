@@ -65,7 +65,9 @@ class ChatBot:
             self.vectorizer = None
             self.matrix = None
 
-        self.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=API_KEY)
+        # temperature=0 was making every response read like a restatement of
+        # the input profile; a bit of headroom gets more judgment-driven phrasing.
+        self.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.4, api_key=API_KEY)
 
     def _retrieve(self, query: str, k: int = 7):
         """Return up to k competition texts most similar to query, best first."""
@@ -108,31 +110,50 @@ class ChatBot:
     guidance, not a professional or official evaluation, so avoid presenting anything as a
     guaranteed outcome.
 
+    CRITICAL RULE: the student already knows their own profile -- do not spend sentences
+    restating it back to them (e.g. "You are taking AP Calc and Honors Physics" is not advice,
+    it's an echo). Every sentence must add something they don't already have: a specific
+    judgment (rigorous/thin/misaligned and why), a named next step (a specific course,
+    competition, activity type, or question to ask a counselor), or a tradeoff they haven't
+    considered. If a section would otherwise just summarize their data, cut it and go straight
+    to the recommendation instead.
+
     STUDENT APPLICATION
     {profile_json}
 
     RELEVANT SUPPORTING MATERIAL (retrieved based on this student's profile)
     {context}
 
-    Analyze their application across these 4 aspects:
-    1. Courses & rigor -- look at their current courses relative to their stated interests:
-       how rigorous is their schedule, how well does it connect to their interest field, and
-       what would a smart next-step study plan look like.
-    2. Clubs & involvement -- look at their current clubs/school involvement and determine how
-       well it signals depth of commitment and leadership potential relative to their intended
-       major, rather than just breadth of participation.
-    3. Competitions & awards -- using ONLY the competitions that actually appear in the
+    Analyze their application across these 6 aspects:
+    1. Courses & rigor -- judge how rigorous their schedule actually is relative to their
+       stated interests (not just listing it), and name a specific next-step course or two.
+    2. Clubs & involvement -- judge whether their school clubs signal real depth/leadership
+       for their intended major or just breadth, and say what would move them from member to
+       standout (a specific role, project, or initiative).
+    3. Extracurriculars -- using work experience, volunteering, and time commitments outside
+       school, judge whether their outside-of-school activities reinforce or dilute their
+       intended-major narrative, and flag any time-balance risk given their stated commitments.
+    4. Competitions & awards -- using ONLY the competitions that actually appear in the
        RELEVANT SUPPORTING MATERIAL above, recommend which ones fit this student's interests,
-       time availability, and team/solo preference. Never invent a competition that wasn't
-       retrieved -- if nothing retrieved fits well, say so honestly.
-    4. Testing & college prep -- look at their test scores (or lack of them) and remaining
-       graduation requirements relative to their college list/preferences, and flag what's
-       still missing from their profile that would sharpen this advice.
+       time availability, and team/solo preference, and say why over the alternatives retrieved.
+       Do not name ANY competition, organization, or program that is not verbatim in the
+       RELEVANT SUPPORTING MATERIAL, even as a "you could look into" suggestion -- you do not
+       know it actually exists or fits their constraints. If the RELEVANT SUPPORTING MATERIAL
+       is empty or nothing in it fits, say plainly that the catalog didn't have a match and
+       suggest they ask their counselor for options in their interest area, with no invented
+       names.
+    5. Testing & college prep -- judge their test scores and remaining graduation requirements
+       against their college list/preferences specifically (not test scores in the abstract),
+       and name the single highest-leverage gap to close next.
+    6. Career fit -- judge how well their intended majors, interest areas, and working style
+       actually cohere into a defensible career direction, and name one concrete way to test
+       that direction before committing further (e.g. a specific kind of internship, project,
+       or person to talk to).
 
     Return your analysis as a JSON object with exactly these keys, each a short (2-4 sentence)
-    recommendation string: testing, clubs, competitions, courses, career, college_prep.
-    If part of the student's profile is missing, don't guess -- either skip referencing it or
-    gently note that adding it would help.
+    recommendation string: testing, clubs, extracurriculars, competitions, courses, career,
+    college_prep. If part of the student's profile is missing, don't guess -- either skip
+    referencing it or gently note that adding it would help.
     '''
         response = self.llm.invoke(prompt)
         raw = response.content.strip()

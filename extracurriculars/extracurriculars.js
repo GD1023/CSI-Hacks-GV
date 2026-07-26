@@ -1,5 +1,6 @@
 import { supabase } from '../supabase-client.js';
 import { fetchProfileFields, renderList, renderText } from '../profile-view.js';
+import { renderAdvice } from '../advice-client.js';
 
 const { data: { session } } = await supabase.auth.getSession();
 
@@ -11,3 +12,4 @@ renderList('pd-extracurriculars', profile.extracurriculars, 'No extracurriculars
 renderList('pd-work-experience', profile.work_experience, 'No work experience added yet.');
 renderList('pd-volunteer-experience', profile.volunteer_experience, 'No volunteer experience added yet.');
 renderText('pd-time-commitments', profile.time_commitments, 'Not set');
+renderAdvice('ai-advice', 'extracurriculars');
