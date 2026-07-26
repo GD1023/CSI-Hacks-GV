@@ -214,13 +214,21 @@ Chemistry
 
 Physics
 
+AP Calculus AB
+
+AP Calculus BC
+
 AP Biology
 
 AP Chemistry
 
 AP Physics 1
 
-AP Physics C
+AP Physics 2
+
+AP Physics C Mechanics
+
+AP Physics C Electricity & Magnetism
 
 Environmental Science (optional)
 
@@ -721,6 +729,10 @@ International Mathematical Olympiad (IMO)
 
 USA Mathematical Olympiad (USAMO)
 
+Berkeley Math Tournament (BMT)
+
+Stanford Math Tournament (SMT)
+
 American Invitational Mathematics Examination (AIME)
 
 AMC 10
@@ -963,6 +975,8 @@ Advanced mathematics
 
 Programming experience
 
+Hackathons
+
 Algorithms
 
 Software projects
@@ -1107,6 +1121,288 @@ The strongest applicants typically exhibit the following characteristics:
 * A coherent personal narrative that connects academic interests, activities, values, and future goals.
 
 Ultimately, successful college applications are not built around checking boxes but around presenting a compelling story of who the student is, how they have grown, what they have contributed to their communities, and how they are likely to contribute to a college campus. The admissions process seeks students who have demonstrated both achievement and potential, recognizing excellence within the context of each student's available opportunities and individual circumstances.
+
+
+Here are some more competitions and context:
+
+Academic Competition: American Mathematics Competitions (AMC) 10/12 – a rigorous 75-minute, 25-question multiple-choice math contest that serves as the primary gateway to the AIME and prestigious national math teams. Keywords: mathematics, problem-solving, logic, algebra, geometry, number theory
+---
+Academic Competition: National Science Bowl – a fast-paced, buzzer-style academic competition hosted by the U.S. Department of Energy covering biology, chemistry, physics, energy, and mathematics. Keywords: STEM, quiz bowl, teamwork, science, buzzer competition
+---
+Academic Competition: Science Olympiad – a nationwide team competition with 23 STEM events per division, from lab experiments to building devices like airplanes and bridges. Keywords: hands-on, engineering, biology, physics, chemistry, build events
+---
+Academic Competition: U.S. National Chemistry Olympiad – a tiered exam competition for high school students that begins with a local exam and advances to a national study camp and international competition. Keywords: chemistry, lab, theoretical, international, olympiad
+---
+Academic Competition: Physics Bowl – a 45-minute, 40-question multiple-choice physics exam administered by the AAPT, with Division 1 for algebra-based and Division 2 for calculus-based physics. Keywords: physics, mechanics, electricity, magnetism, standardized
+---
+Academic Competition: F=ma Exam – a 75-minute, 25-question multiple-choice mechanics exam that serves as the first round for U.S. Physics Team selection. Keywords: Newton's laws, kinematics, energy, momentum, olympiad pathway
+---
+Academic Competition: National History Day (NHD) – a project-based competition where students create exhibits, documentaries, papers, or performances on a historical theme. Keywords: history, research, primary sources, project-based, public speaking
+---
+Academic Competition: NAQT Quiz Bowl – a buzzer-based academic trivia competition covering literature, science, history, and pop culture, with local and national championship tournaments. Keywords: trivia, buzzer, general knowledge, teamwork, academic challenge
+---
+Academic Competition: United States Academic Decathlon – a 10-event competition where teams of nine students compete across honors, scholastic, and varsity GPA divisions. Keywords: interdisciplinary, GPA-based, team, comprehensive, academics
+---
+Academic Competition: Conrad Challenge – a team-based innovation competition where students design solutions to global problems in areas like aerospace, health, and sustainability. Keywords: innovation, entrepreneurship, STEM, social impact, prototyping
+---
+Academic Competition: DECA Competitive Events – business and marketing competitions with role-plays, case studies, and written events for emerging leaders. Keywords: business, marketing, finance, hospitality, career preparation
+---
+Academic Competition: FBLA (Future Business Leaders of America) – competitive events and leadership conferences for students interested in business and entrepreneurship. Keywords: business, leadership, competition, networking, career
+---
+Academic Competition: HOSA - Future Health Professionals – health science competitions with events in biomedical science, clinical skills, and health policy. Keywords: medicine, health science, clinical skills, leadership, career
+---
+Academic Competition: Mock Trial – a simulation of a court case where students act as attorneys and witnesses, competing in regional and state tournaments. Keywords: law, debate, public speaking, critical thinking, teamwork
+---
+Academic Competition: Model United Nations (MUN) – a simulation of UN committees where students debate global issues and draft resolutions. Keywords: diplomacy, international relations, debate, public speaking, global affairs
+---
+Academic Competition: Model Congress – a simulation of U.S. legislative proceedings where students propose and debate bills. Keywords: government, civics, debate, legislation, public policy
+---
+Academic Competition: National Academic League – a team-based academic competition where students answer questions and complete collaborative challenges aligned with national standards. Keywords: teamwork, standards-based, interdisciplinary, buzzer, collaboration
+---
+Academic Competition: PicoCTF – a cybersecurity competition where students solve challenges in reverse engineering, cryptography, and web exploitation. Keywords: cybersecurity, hacking, cryptography, computer science, capture the flag
+---
+Academic Competition: Space Settlement Design Competition – a team-based engineering competition where students design a space settlement and present proposals to industry judges. Keywords: aerospace, engineering, design, teamwork, space
+---
+Academic Competition: World of 8 Billion Video Contest – a competition where students create short videos about global challenges related to population growth. Keywords: video production, global issues, advocacy, creativity, population
+---
+Art Competition: Scholastic Art & Writing Awards – the nation's longest-running creative recognition program for grades 7-12, with categories in art, writing, and multimedia. Keywords: art, writing, creative, portfolio, scholarship
+---
+Art Competition: Congressional Art Competition – a nationwide high school visual arts competition with winners displayed in the U.S. Capitol for one year. Keywords: visual arts, painting, drawing, photography, national recognition
+---
+Art Competition: All American High School Film Festival – a film festival where student works are screened in Times Square with over $500,000 in prizes and scholarships. Keywords: filmmaking, cinema, video production, scholarship, film festival
+---
+Art Competition: NAACP ACT-SO – a yearlong achievement program with 33 competitions in STEM, humanities, business, and performing, visual, and culinary arts for African American high school students. Keywords: arts, humanities, STEM, cultural, achievement
+---
+Art Competition: Freedom 250 American Heroes Student Art Contest – a national art contest honoring American heroes for the nation's 250th anniversary, with prizes from NEH. Keywords: art, history, patriotism, visual arts, national contest
+---
+Art Competition: National Young Composers Challenge – a composition competition where winning orchestral and ensemble pieces are performed and recorded by a professional orchestra. Keywords: music, composition, orchestra, performance, classical
+---
+Art Competition: Princeton 10-Minute Play Contest – a playwriting competition judged by Princeton theater faculty, open to 11th graders. Keywords: theater, playwriting, dramatic writing, Princeton, competition
+---
+Art Competition: The Edit Digital Storytelling Challenge – a free competition where students create 30-90 second video news reports on wellness topics. Keywords: video, journalism, storytelling, digital media, wellness
+---
+Art Competition: International Compost Awareness Week Poster Contest – an environmental art competition with a $500 prize for the winning poster. Keywords: art, environmental, sustainability, design, poster
+---
+Entrepreneurship Competition: Blue Ocean Competition – a business pitch competition where high school students present innovative ideas to receive feedback and prize money. Keywords: entrepreneurship, pitch, business plan, innovation, venture
+---
+Entrepreneurship Competition: Stevens High School Entrepreneurship and AI Pitch Competition – a video pitch competition for business ideas integrating artificial intelligence, with cash prizes. Keywords: AI, entrepreneurship, pitch, innovation, technology
+---
+Entrepreneurship Competition: Innovator Competition (Jacobson Institute) – a competition where high school students pitch business ideas and compete for seed capital. Keywords: entrepreneur, pitch, seed funding, innovation, business
+---
+Entrepreneurship Competition: BUILD's Design Challenge – a design-thinking competition where students create solutions to real-world challenges. Keywords: design thinking, entrepreneurship, prototyping, social impact, innovation
+---
+Entrepreneurship Competition: Samsung Solve for Tomorrow – a competition where students create STEM solutions for community problems, with $2 million in prizes for schools. Keywords: STEM, community service, engineering, innovation, social impact
+---
+Writing Competition: New York Times Student Writing Contests – monthly writing contests for ages 13-19 on topics ranging from reviews to editorials to narratives. Keywords: writing, journalism, opinion, creativity, New York Times
+---
+Writing Competition: AFSA National High School Essay Contest – an essay competition on international relations, with prizes including Semester at Sea tuition. Keywords: international relations, essay, history, scholarship, global affairs
+---
+Writing Competition: Jane Austen Essay Contest – a scholarship essay competition on a new Austen theme each year, sponsored by the Jane Austen Society. Keywords: literature, Jane Austen, essay, scholarship, humanities
+---
+Writing Competition: Stossel in the Classroom – an essay and video competition on entrepreneurship and innovation with $20,000 in prizes. Keywords: entrepreneurship, innovation, economics, media, essay
+---
+Writing Competition: Breakthrough Junior Challenge – a video competition where students explain a big scientific idea in physics, life sciences, or math for college scholarships. Keywords: science, video, communication, physics, scholarship
+---
+Science Fair: Regeneron International Science and Engineering Fair (ISEF) – the world's largest pre-college science competition, with affiliated local and regional fairs. Keywords: research, science fair, international, STEM, presentation
+---
+Science Fair: Regeneron Science Talent Search – the nation's oldest and most prestigious science and math competition for high school seniors. Keywords: research, STEM, senior, competition, prestigious
+---
+Science Fair: National Science Bowl Regional Competitions – qualifying tournaments held across the U.S. for teams to advance to the national championship in Washington, D.C. Keywords: qualification, regional, competition, science, math
+---
+Science Fair: eCYBERMISSION – a virtual STEM competition for grades 6-9 where teams identify and solve community problems. Keywords: STEM, community, problem-solving, middle school, team
+---
+Science Fair: Davidson Fellows Scholarship – a scholarship program for students under 18 with significant projects in science, technology, engineering, mathematics, or humanities. Keywords: scholarship, research, innovation, advanced, fellowship
+---
+Science Fair: BioGENEius Challenge – a competition for high school students conducting biotechnology research. Keywords: biotechnology, genetics, research, life sciences, STEM
+---
+Science Fair: Physics Olympiad – a series of exams leading to the U.S. Physics Team and International Physics Olympiad. Keywords: physics, olympiad, mechanics, advanced, competition
+---
+Science Fair: Biology Olympiad – a competition for high school students with exams in molecular, cellular, and organismal biology. Keywords: biology, genetics, ecology, evolution, olympiad
+---
+Science Fair: Linguistics Olympiad – a competition where students solve linguistic puzzles using logic and analytical reasoning. Keywords: linguistics, logic, puzzles, analytical, language
+---
+Fall High School Sports: Football – a team sport played in the fall, governed by state athletic associations like GHSA. Keywords: athletics, team, contact, fall season, competitive
+---
+Fall High School Sports: Cross Country – a distance running sport contested in the fall, building endurance and team scoring. Keywords: running, endurance, team, fall sport, track
+---
+Fall High School Sports: Volleyball – a team sport played indoors in the fall, focusing on serving, setting, and spiking. Keywords: athletics, team, indoor, fall, competitive
+---
+Fall High School Sports: Girls Soccer – a fall team sport emphasizing footwork, strategy, and cardiovascular fitness. Keywords: soccer, team, fall, endurance, competitive
+---
+Fall High School Sports: Boys Tennis – a fall team sport developing hand-eye coordination and strategic play. Keywords: tennis, racquet, fall, singles, doubles
+---
+Fall High School Sports: Girls Swim and Dive – a fall aquatic sport combining swimming races and diving events. Keywords: swimming, diving, aquatic, fall, competitive
+---
+Winter High School Sports: Boys Basketball – a winter team sport focused on shooting, dribbling, and defensive strategy. Keywords: basketball, winter, team, athletic, competitive
+---
+Winter High School Sports: Girls Basketball – a winter team sport that builds agility, teamwork, and shooting skills. Keywords: basketball, winter, athletic, team, competitive
+---
+Winter High School Sports: Wrestling – an individual winter sport emphasizing strength, technique, and weight-class competition. Keywords: wrestling, grappling, winter, individual, strength
+---
+Winter High School Sports: Boys Swim and Dive – a winter aquatic competition with individual and relay events. Keywords: swimming, diving, winter, aquatic, competitive
+---
+Winter High School Sports: Gymnastics – a winter sport developing flexibility, balance, and strength through apparatus routines. Keywords: gymnastics, flexibility, balance, winter, artistic
+---
+Spring High School Sports: Track and Field – a spring sport with running, jumping, and throwing events for individual and team competition. Keywords: running, jumping, throwing, spring, competitive
+---
+Spring High School Sports: Baseball – a spring team sport focused on hitting, pitching, and fielding strategy. Keywords: baseball, spring, bat, ball, team
+---
+Spring High School Sports: Softball – a spring team sport similar to baseball with fast-pitch and slow-pitch variations. Keywords: softball, spring, bat, ball, team
+---
+Spring High School Sports: Girls Tennis – a spring racquet sport with singles and doubles competition. Keywords: tennis, spring, racquet, singles, doubles
+---
+Spring High School Sports: Boys Soccer – a spring team sport requiring footwork, strategy, and endurance. Keywords: soccer, spring, team, endurance, competitive
+---
+Spring High School Sports: Golf – a spring individual sport emphasizing precision, course management, and mental focus. Keywords: golf, spring, individual, precision, strategy
+---
+Club Sport: Archery – a club sport teaching precision and focus, with opportunities for competition at archery ranges. Keywords: archery, precision, target, hand-eye coordination, discipline
+---
+Club Sport: Badminton – a racquet sport focusing on agility, speed, and hand-eye coordination, played in singles and doubles. Keywords: badminton, racquet, agility, doubles, singles
+---
+Club Sport: Pickleball – a paddle sport combining elements of tennis, badminton, and ping-pong, growing in popularity. Keywords: pickleball, paddle, hand-eye, agility, recreational
+---
+Club Sport: Table Tennis – a fast-paced indoor sport emphasizing reflexes, spin, and precision. Keywords: ping-pong, table tennis, reflex, spin, hand-eye
+---
+Club Sport: Ultimate Frisbee – a non-contact team sport combining elements of football and soccer with a flying disc. Keywords: ultimate, frisbee, non-contact, team, endurance
+---
+Club Sport: Cricket – a bat-and-ball team sport with a global following, emphasizing timing, strategy, and fielding. Keywords: cricket, bat, ball, team, strategy
+---
+Club Sport: Rock Climbing – an indoor or outdoor climbing club that builds strength, flexibility, and problem-solving. Keywords: climbing, rock, strength, problem-solving, adventure
+---
+Club Sport: Chess – a strategic board game played competitively in clubs and tournaments. Keywords: chess, strategy, logic, competition, critical thinking
+---
+Club Sport: Cornhole – a recreational club activity involving throwing bags at a raised platform. Keywords: cornhole, recreational, team, coordination, throwing
+---
+Club Sport: Petanque – a French boules sport emphasizing precision throwing and strategy. Keywords: petanque, boules, precision, strategy, recreational
+---
+Intramural Sport: Intramural Basketball – campus-based recreational basketball leagues for fun and fitness. Keywords: intramural, basketball, recreation, campus, fitness
+---
+Intramural Sport: Intramural Volleyball – recreational volleyball leagues with co-ed and gender-specific divisions. Keywords: intramural, volleyball, recreation, campus, team
+---
+Intramural Sport: Intramural Flag Football – non-contact football leagues emphasizing fun and participation. Keywords: flag football, intramural, non-contact, recreation, team
+---
+Academic Club: Math Club – a student club for practicing math problems, preparing for competitions, and exploring mathematical topics. Keywords: mathematics, problem-solving, competition prep, collaboration
+---
+Academic Club: Science Club – a club focused on experiments, guest speakers, and exploring science topics beyond the curriculum. Keywords: science, experiments, inquiry, exploration, critical thinking
+---
+Academic Club: Computer Science Club – a club for learning programming languages, building projects, and preparing for hackathons. Keywords: coding, programming, algorithms, projects, hackathons
+---
+Academic Club: Robotics Club (FIRST Robotics) – a competition robotics team building robots for challenges like VEX or FIRST. Keywords: robotics, VEX, FIRST, engineering, programming, building
+---
+Academic Club: Girls Who Code – a club encouraging girls to explore computer science through projects and mentorship. Keywords: girls, coding, computer science, diversity, mentorship
+---
+Academic Club: DECA Club – a business club preparing students for competitive events in marketing, finance, and management. Keywords: business, marketing, finance, competition, leadership
+---
+Academic Club: FBLA Club – a career preparation club for students interested in business and entrepreneurship. Keywords: business, leadership, career prep, competition, networking
+---
+Academic Club: HOSA Club – a health science club with competitive events and career exploration in medicine and health fields. Keywords: health science, medicine, competition, career prep, leadership
+---
+Academic Club: Mock Trial Team – a competitive team that simulates trial proceedings and competes against other schools. Keywords: law, debate, public speaking, teamwork, competition
+---
+Academic Club: Model UN Team – a club where students simulate UN committees and debate international issues. Keywords: diplomacy, debate, international relations, public speaking, research
+---
+Academic Club: Debate Team – a competitive speech and debate club with events in Lincoln-Douglas, policy, and public forum. Keywords: debate, public speaking, argumentation, critical thinking, competition
+---
+Academic Club: Quiz Bowl Team – a buzzer-based trivia team competing in academic tournaments. Keywords: trivia, buzzer, academic competition, teamwork, knowledge
+---
+Academic Club: Speech and Debate – a co-curricular activity combining public speaking, research, and persuasive argumentation. Keywords: speech, debate, public speaking, research, persuasion
+---
+Academic Club: Economics Club – a club exploring economic concepts, current events, and investment strategies. Keywords: economics, finance, investment, current events, markets
+---
+Academic Club: Investment Club – a club for learning about stocks, markets, and portfolio management. Keywords: finance, investing, stocks, market analysis, portfolio
+---
+Academic Club: Entrepreneurship Club – a club focusing on business ideation, pitches, and startup strategy. Keywords: entrepreneurship, business, innovation, pitching, startups
+---
+Academic Club: Creative Writing Club – a club for writers to share, critique, and develop original creative works. Keywords: writing, fiction, poetry, critique, creativity
+---
+Academic Club: Film Appreciation Club – a club for watching and discussing films, directors, and cinematic techniques. Keywords: film, cinema, media, analysis, appreciation
+---
+Academic Club: Documentary Club – a club focused on creating, watching, and analyzing documentary films. Keywords: documentary, filmmaking, media literacy, social issues
+---
+Academic Club: Art Club – a club for creating and appreciating visual arts like painting, drawing, and sculpture. Keywords: visual arts, drawing, painting, creativity, community
+---
+Academic Club: Photography Club – a club for learning and practicing photography techniques and sharing work. Keywords: photography, visual arts, composition, editing, creativity
+---
+Academic Club: Theatre Group – a club for acting, stage production, and dramatic performance. Keywords: theater, acting, stage, production, performance
+---
+Academic Club: Music Production Club – a club for creating music using digital audio workstations and recording equipment. Keywords: music, production, audio, digital, creativity
+---
+Service Club: Key Club – a student-led service organization affiliated with Kiwanis International. Keywords: service, leadership, community, philanthropy, civic engagement
+---
+Service Club: National Honor Society (NHS) – a prestigious organization recognizing scholarship, leadership, service, and character. Keywords: honor society, leadership, service, character, scholarship
+---
+Service Club: California Scholarship Federation (CSF) – a service organization for students with strong academic records. Keywords: scholarship, service, leadership, academics, recognition
+---
+Service Club: Best Buddies – a club promoting one-to-one friendships between students with and without intellectual disabilities. Keywords: inclusion, friendship, disability, community, service
+---
+Service Club: Red Cross Club – a service club supporting Red Cross missions through blood drives, disaster relief, and health initiatives. Keywords: service, health, disaster relief, community, volunteerism
+---
+Service Club: Habitat for Humanity Club – a service club organizing builds and fundraising for affordable housing. Keywords: service, housing, construction, community, philanthropy
+---
+Service Club: Meals on Wheels – a volunteer club delivering meals to seniors and homebound individuals. Keywords: service, senior care, nutrition, community, volunteerism
+---
+Service Club: Save the Sound – an environmental club focused on protecting and restoring local waterways. Keywords: environment, conservation, water, restoration, service
+---
+Service Club: Eco Reps – an environmental club promoting sustainability and green initiatives at school. Keywords: environment, sustainability, green, club, activism
+---
+Service Club: Heal the Bay – a club organizing beach cleanups and advocating for ocean health. Keywords: environment, marine, cleanups, advocacy, service
+---
+Service Club: Kids at Heart – a club supporting children's charities and pediatric health initiatives. Keywords: charity, children, service, philanthropy, health
+---
+Service Club: Operation Smile – a club raising awareness and funds for cleft lip and palate surgeries worldwide. Keywords: service, health, global, charity, fundraising
+---
+Cultural Club: Chinese Club – a club for exploring Chinese language, culture, and community. Keywords: Chinese, language, culture, diversity, community
+---
+Cultural Club: French Club – a club celebrating French language, culture, and cuisine. Keywords: French, language, culture, cuisine, international
+---
+Cultural Club: Spanish Club – a club for learning Spanish language and exploring Hispanic cultures. Keywords: Spanish, language, culture, diversity, community
+---
+Cultural Club: Latin Club – a club exploring Latin language and classical Roman culture. Keywords: Latin, classics, ancient, language, history
+---
+Cultural Club: Korean American Student Association – a club celebrating Korean culture and fostering community. Keywords: Korean, culture, heritage, community, diversity
+---
+Cultural Club: Jewish Student Union – a club for Jewish students to explore identity, culture, and community. Keywords: Jewish, culture, community, heritage, identity
+---
+Cultural Club: Muslim Student Association – a club for Muslim students to explore faith and community. Keywords: Muslim, faith, community, culture, identity
+---
+Cultural Club: Multicultural Student Union – a club promoting diversity and cross-cultural understanding. Keywords: diversity, culture, inclusion, community, unity
+---
+Special Interest Club: Dungeons and Dragons Club – a club for playing the tabletop RPG and building storytelling skills. Keywords: D&D, roleplaying, gaming, storytelling, community
+---
+Special Interest Club: Board Game Club – a club for playing strategy and party board games. Keywords: board games, strategy, recreation, community, gaming
+---
+Special Interest Club: Culinary Arts Club – a club for cooking, baking, and exploring food culture. Keywords: cooking, baking, culinary, food, creativity
+---
+Special Interest Club: Gardening Club – a club for planting, maintaining gardens, and learning about botany. Keywords: gardening, botany, sustainability, outdoors, ecology
+---
+Special Interest Club: Beekeeping Club – a club for learning about bees and maintaining campus hives. Keywords: beekeeping, ecology, sustainability, bees, environmental
+---
+Special Interest Club: Bird Watching Club – a club for observing and identifying local bird species. Keywords: ornithology, birding, ecology, outdoors, observation
+---
+Special Interest Club: Sports Analytics Club – a club analyzing sports data using statistics and coding. Keywords: sports, analytics, data science, statistics, coding
+---
+Special Interest Club: Rock Band Club – a club for forming bands and performing music. Keywords: music, band, performance, rock, ensemble
+---
+Special Interest Club: K-Pop Dance Club – a club for learning and performing K-Pop dance choreography. Keywords: K-Pop, dance, performance, culture, choreography
+---
+Special Interest Club: Step Team – a club practicing step dance, a percussive dance form. Keywords: step, dance, performance, rhythm, art
+---
+Special Interest Club: Crochet Club – a club for learning and practicing crochet and knitting crafts. Keywords: crochet, knitting, crafting, fiber arts, creativity
+---
+Special Interest Club: Philosophy Club – a club exploring philosophical questions and ethical debates. Keywords: philosophy, ethics, debate, critical thinking, inquiry
+---
+Special Interest Club: Neuroscience Club – a club exploring brain science with lectures, discussions, and projects. Keywords: neuroscience, brain, psychology, inquiry, research
+---
+Special Interest Club: Rocketry Club – a club designing and building model rockets for competitions. Keywords: rocketry, aerospace, engineering, design, competition
+---
+Special Interest Club: Cryptography Club – a club exploring codes, ciphers, and computer security. Keywords: cryptography, codes, security, math, puzzles
+---
+Special Interest Club: Aerospace Club – a club for exploring aviation, space, and rocketry projects. Keywords: aerospace, aviation, space, engineering, flight
+---
+Special Interest Club: Movie Club – a club for watching, discussing, and analyzing films. Keywords: film, cinema, media, discussion, appreciation
+---
+Special Interest Club: Tea Club – a club exploring tea culture, tasting, and preparation. Keywords: tea, culture, tasting, tradition, social
+
 
 '''
 def _competition_to_text(row):
