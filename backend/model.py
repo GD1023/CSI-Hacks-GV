@@ -1580,10 +1580,10 @@ class ChatBot:
        that direction before committing further (e.g. a specific kind of internship, project,
        or person to talk to).
 
-    Return your analysis as a JSON object with exactly these keys, each a short (2-4 sentence)
+    Return your analysis as a JSON object with exactly these keys, each a short (5-8 sentence)
     recommendation string: testing, clubs, extracurriculars, competitions, courses, career,
     college_prep. If part of the student's profile is missing, don't guess -- either skip
-    referencing it or gently note that adding it would help.
+    referencing it or gently note that adding it would help. In your sentences, avoid filler words and focus on content. Provide many different options for the given category; for instance, competitions should have at least half a dozen competitions mentioned. Be rigorous and avoid repeating suggestions they've already mentioned.
     '''
         response = self.llm.invoke(prompt)
         raw = response.content.strip()
