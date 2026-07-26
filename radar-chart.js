@@ -1,5 +1,5 @@
 const AXIS_COUNT = 5;
-const SIZE = 320;
+const SIZE = 400;
 const CENTER = SIZE / 2;
 const MAX_RADIUS = 110;
 const RING_COUNT = 4;
