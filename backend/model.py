@@ -2,8 +2,8 @@ import os
 import json
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 from supabase import create_client
 
 load_dotenv()
@@ -51,13 +51,30 @@ class ChatBot:
             print(f"Warning: could not load competitions table ({exc}). Retrieval will return no matches.")
             competitions = []
 
-        self.embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        self.vectorstore = FAISS.from_texts(
-            texts=[_competition_to_text(row) for row in competitions] or [""],
-            embedding=self.embedding,
-            metadatas=competitions or [{}],
-        )
+        self.texts = [_competition_to_text(row) for row in competitions]
+
+        # TF-IDF + cosine similarity instead of neural embeddings + FAISS --
+        # that stack (torch/sentence-transformers/faiss) needs close to a GB
+        # of RAM just to load, which doesn't fit Render's 512MB free tier.
+        # At ~300 short competition blurbs, TF-IDF is plenty to match a
+        # student profile to relevant competitions and costs a few MB.
+        if self.texts:
+            self.vectorizer = TfidfVectorizer(stop_words="english")
+            self.matrix = self.vectorizer.fit_transform(self.texts)
+        else:
+            self.vectorizer = None
+            self.matrix = None
+
         self.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=API_KEY)
+
+    def _retrieve(self, query: str, k: int = 7):
+        """Return up to k competition texts most similar to query, best first."""
+        if not query or self.vectorizer is None:
+            return []
+        query_vec = self.vectorizer.transform([query])
+        scores = cosine_similarity(query_vec, self.matrix)[0]
+        ranked = scores.argsort()[::-1][:k]
+        return [self.texts[i] for i in ranked if scores[i] > 0]
 
     def chat(self, profile: dict) -> dict:
         """Run the counselor prompt for one student profile (a dict shaped like a
@@ -82,8 +99,8 @@ class ChatBot:
             )
             if value
         )
-        docs = self.vectorstore.similarity_search(retrieval_signal or profile_json, k=7)
-        context = "\n".join(doc.page_content for doc in docs)
+        matches = self._retrieve(retrieval_signal or profile_json, k=7)
+        context = "\n".join(matches)
 
         prompt = f'''
     You are a counselor with the responsibility of looking at a student's profile from the
