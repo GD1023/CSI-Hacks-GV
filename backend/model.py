@@ -1425,6 +1425,75 @@ def _chunk_knowledge_base(text: str) -> list:
     return [s.strip() for s in sections if s.strip()]
 
 
+# The 7 advice bins, matching the 7 keys the chat prompt must return. Every KB
+# chunk gets tagged into exactly one of these so retrieval can be scoped per
+# advice section instead of one shared blob feeding every section.
+_BIN_ORDER = ["courses", "clubs", "extracurriculars", "competitions", "testing", "college_prep", "career"]
+
+# EXTRA_CONTEXT's numbered "# Section N: ..." headings, mapped to a bin.
+_SECTION_BIN_MAP = {
+    1: "courses", 2: "courses", 3: "courses", 4: "courses",
+    5: "testing", 6: "testing",
+    7: "extracurriculars", 8: "extracurriculars", 9: "extracurriculars", 10: "extracurriculars",
+    11: "college_prep", 12: "college_prep",
+    13: "competitions", 14: "competitions",
+    15: "college_prep", 16: "college_prep", 17: "college_prep",
+    18: "career",
+    19: "college_prep", 20: "college_prep",
+}
+_SECTION_HEADING_RE = re.compile(r"^#+\s*Section\s+(\d+)\s*:", re.MULTILINE)
+
+# The catalog-style tail of EXTRA_CONTEXT (one-line entries like "Academic Club:
+# Math Club -- ...") carries no "Section N" heading of its own, so its entries
+# are tagged by category prefix instead, overriding the section-based default.
+_TAIL_PREFIX_BIN_MAP = {
+    "Academic Competition": "competitions",
+    "Art Competition": "competitions",
+    "Entrepreneurship Competition": "competitions",
+    "Writing Competition": "competitions",
+    "Science Fair": "competitions",
+    "Fall High School Sports": "extracurriculars",
+    "Winter High School Sports": "extracurriculars",
+    "Spring High School Sports": "extracurriculars",
+    "Club Sport": "extracurriculars",
+    "Intramural Sport": "extracurriculars",
+    "Academic Club": "clubs",
+    "Service Club": "clubs",
+    "Cultural Club": "clubs",
+    "Special Interest Club": "clubs",
+}
+_TAIL_PREFIX_RE = re.compile(
+    r"(?m)^(" + "|".join(re.escape(p) for p in _TAIL_PREFIX_BIN_MAP) + r"):"
+)
+
+
+def _tag_knowledge_base(chunks: list) -> list:
+    """Tag each chunk (in the order _chunk_knowledge_base produced them) with one
+    of _BIN_ORDER. A chunk inherits the bin of whichever '# Section N:' heading
+    last preceded it; a tail-block catalog entry overrides that with its own
+    category prefix since those entries don't carry a section heading."""
+    tags = []
+    current_section = None
+    for chunk in chunks:
+        heading_match = _SECTION_HEADING_RE.search(chunk)
+        if heading_match:
+            current_section = int(heading_match.group(1))
+
+        tail_match = _TAIL_PREFIX_RE.search(chunk)
+        if tail_match:
+            tags.append(_TAIL_PREFIX_BIN_MAP[tail_match.group(1)])
+        else:
+            tags.append(_SECTION_BIN_MAP.get(current_section, "college_prep"))
+    return tags
+
+
+def _bin_indices(tags: list) -> dict:
+    indices = {b: [] for b in _BIN_ORDER}
+    for i, tag in enumerate(tags):
+        indices[tag].append(i)
+    return indices
+
+
 def _build_index(texts):
     if not texts:
         return None, None
@@ -1441,6 +1510,18 @@ def _tfidf_retrieve(query: str, texts, vectorizer, matrix, k: int = 5):
     scores = cosine_similarity(query_vec, matrix)[0]
     ranked = scores.argsort()[::-1][:k]
     return [texts[i] for i in ranked if scores[i] > 0]
+
+
+def _tfidf_retrieve_bin(query: str, vectorizer, matrix, indices: list, texts: list, k: int = 10):
+    """Like _tfidf_retrieve, but scoped to one bin's rows. Reuses the single
+    shared TF-IDF space (matrix is row-sliced to the bin) rather than fitting a
+    separate vectorizer per bin."""
+    if not query or vectorizer is None or not indices:
+        return []
+    query_vec = vectorizer.transform([query])
+    scores = cosine_similarity(query_vec, matrix[indices])[0]
+    ranked = scores.argsort()[::-1][:k]
+    return [texts[indices[i]] for i in ranked if scores[i] > 0]
 
 
 def clean_profile(profile: dict) -> dict:
@@ -1475,6 +1556,7 @@ class ChatBot:
 
         self.kb_texts = _chunk_knowledge_base(EXTRA_CONTEXT)
         self.kb_vectorizer, self.kb_matrix = _build_index(self.kb_texts)
+        self.kb_bin_indices = _bin_indices(_tag_knowledge_base(self.kb_texts))
 
         # temperature=0 was making every response read like a restatement of
         # the input profile; a bit of headroom gets more judgment-driven phrasing.
@@ -1483,7 +1565,7 @@ class ChatBot:
     def chat(self, profile: dict) -> dict:
         """Run the counselor prompt for one student profile (a dict shaped like a
         public.profiles row -- see context_schema.json for an example) and return
-        the model's answer parsed as a dict of the six advice sections.
+        the model's answer parsed as a dict of the seven advice sections.
         """
         profile = clean_profile(profile)
         profile_json = json.dumps(profile, indent=2)
@@ -1506,26 +1588,76 @@ class ChatBot:
         matches = _tfidf_retrieve(retrieval_signal or profile_json, self.texts, self.vectorizer, self.matrix, k=7)
         context = "\n".join(matches)
 
-        # Broader signal for the reference article -- it covers GPA, rigor,
-        # testing, essays, etc., not just interest matching like competitions.
-        kb_query = " ".join(
-            str(value)
-            for value in (
-                profile.get("interests"),
-                profile.get("intended_majors"),
+        # Per-bin signal: each of the 7 advice bins retrieves against only the
+        # profile fields relevant to that section, so e.g. testing isn't
+        # diluted by extracurricular keywords and vice versa. All 7 share the
+        # same fitted self.kb_vectorizer/self.kb_matrix -- only the candidate
+        # rows searched (self.kb_bin_indices[bin_name]) differ per bin.
+        bin_signals = {
+            "courses": (
                 profile.get("current_courses"),
+                profile.get("completed_courses"),
                 profile.get("ap_courses"),
                 profile.get("academic_strengths"),
                 profile.get("academic_weaknesses"),
                 profile.get("remaining_requirements"),
+                profile.get("schedule_type"),
+            ),
+            "clubs": (
+                profile.get("clubs"),
+                profile.get("leadership_roles"),
+                profile.get("intended_majors"),
+                profile.get("interest_areas"),
+            ),
+            "extracurriculars": (
                 profile.get("extracurriculars"),
+                profile.get("time_commitments"),
+                profile.get("work_experience"),
+                profile.get("volunteer_experience"),
+            ),
+            "competitions": (
+                profile.get("interests"),
+                profile.get("intended_majors"),
+                profile.get("interest_areas"),
+                profile.get("competition_history"),
+                profile.get("competition_team_preference"),
                 profile.get("honors_awards"),
+            ),
+            "testing": (
+                profile.get("sat_score"),
+                profile.get("act_score"),
+                profile.get("psat_score"),
+                profile.get("college_list"),
                 profile.get("college_preferences"),
+            ),
+            "college_prep": (
+                profile.get("personal_narrative"),
+                profile.get("college_list"),
+                profile.get("college_preferences"),
+                profile.get("additional_notes"),
+                profile.get("remaining_requirements"),
+            ),
+            "career": (
+                profile.get("intended_majors"),
+                profile.get("interest_areas"),
+                profile.get("working_style"),
+                profile.get("personal_narrative"),
+                profile.get("interests"),
+            ),
+        }
+
+        bin_context = {}
+        for bin_name in _BIN_ORDER:
+            query = " ".join(str(v) for v in bin_signals[bin_name] if v)
+            bin_matches = _tfidf_retrieve_bin(
+                query or profile_json,
+                self.kb_vectorizer,
+                self.kb_matrix,
+                self.kb_bin_indices[bin_name],
+                self.kb_texts,
+                k=10,
             )
-            if value
-        )
-        kb_matches = _tfidf_retrieve(kb_query or profile_json, self.kb_texts, self.kb_vectorizer, self.kb_matrix, k=5)
-        kb_context = "\n\n".join(kb_matches)
+            bin_context[bin_name] = "\n\n".join(bin_matches)
 
         prompt = f'''
     You are a counselor with the responsibility of looking at a student's profile from the
@@ -1539,46 +1671,66 @@ class ChatBot:
     judgment (rigorous/thin/misaligned and why), a named next step (a specific course,
     competition, activity type, or question to ask a counselor), or a tradeoff they haven't
     considered. If a section would otherwise just summarize their data, cut it and go straight
-    to the recommendation instead. The same rule applies to the GENERAL ADMISSIONS REFERENCE
+    to the recommendation instead. The same rule applies to every SUPPORTING REFERENCE block
     below -- use it to calibrate your judgment (e.g. what counts as rigorous, what SAT range is
     competitive for their college list), never quote or summarize it back at the student as if
-    reciting the article were advice.
+    reciting the reference were advice.
 
     STUDENT APPLICATION
     {profile_json}
 
-    RELEVANT SUPPORTING MATERIAL (retrieved based on this student's profile)
-    {context}
+    Analyze their application across these 7 aspects. Each one comes with its own SUPPORTING
+    REFERENCE, retrieved specifically for that aspect -- use each block only to calibrate that
+    aspect's judgment, not the others.
 
-    GENERAL ADMISSIONS REFERENCE (retrieved from a college admissions guide -- background
-    knowledge to calibrate your judgment against, not a source to quote)
-    {kb_context}
-
-    Analyze their application across these 6 aspects:
     1. Courses & rigor -- judge how rigorous their schedule actually is relative to their
        stated interests (not just listing it), and name a specific next-step course or two.
+       SUPPORTING REFERENCE (courses & rigor)
+       {bin_context["courses"]}
+
     2. Clubs & involvement -- judge whether their school clubs signal real depth/leadership
        for their intended major or just breadth, and say what would move them from member to
-       standout (a specific role, project, or initiative).
+       standout (a specific role, project, or initiative). Do not name any club that is not
+       verbatim in the SUPPORTING REFERENCE below as something to join -- you do not know it
+       actually exists at their school.
+       SUPPORTING REFERENCE (clubs & involvement)
+       {bin_context["clubs"]}
+
     3. Extracurriculars -- using work experience, volunteering, and time commitments outside
        school, judge whether their outside-of-school activities reinforce or dilute their
        intended-major narrative, and flag any time-balance risk given their stated commitments.
+       SUPPORTING REFERENCE (extracurriculars)
+       {bin_context["extracurriculars"]}
+
     4. Competitions & awards -- using ONLY the competitions that actually appear in the
-       RELEVANT SUPPORTING MATERIAL above, recommend which ones fit this student's interests,
-       time availability, and team/solo preference, and say why over the alternatives retrieved.
-       Do not name ANY competition, organization, or program that is not verbatim in the
-       RELEVANT SUPPORTING MATERIAL, even as a "you could look into" suggestion -- you do not
-       know it actually exists or fits their constraints. If the RELEVANT SUPPORTING MATERIAL
-       is empty or nothing in it fits, say plainly that the catalog didn't have a match and
-       suggest they ask their counselor for options in their interest area, with no invented
-       names.
-    5. Testing & college prep -- judge their test scores and remaining graduation requirements
-       against their college list/preferences specifically (not test scores in the abstract),
-       and name the single highest-leverage gap to close next.
-    6. Career fit -- judge how well their intended majors, interest areas, and working style
+       RELEVANT SUPPORTING MATERIAL or SUPPORTING REFERENCE below, recommend which ones fit
+       this student's interests, time availability, and team/solo preference, and say why over
+       the alternatives retrieved. Do not name ANY competition, organization, or program that is
+       not verbatim in one of those two blocks, even as a "you could look into" suggestion --
+       you do not know it actually exists or fits their constraints. If both are empty or
+       nothing in them fits, say plainly that the catalog didn't have a match and suggest they
+       ask their counselor for options in their interest area, with no invented names.
+       RELEVANT SUPPORTING MATERIAL (retrieved from the live competitions catalog)
+       {context}
+       SUPPORTING REFERENCE (competitions & awards guide)
+       {bin_context["competitions"]}
+
+    5. Testing -- judge their test scores against their college list/preferences specifically
+       (not test scores in the abstract), and name the single highest-leverage gap to close next.
+       SUPPORTING REFERENCE (testing)
+       {bin_context["testing"]}
+
+    6. College application prep -- judge their remaining graduation requirements, essay/
+       narrative readiness, and college list fit, and name the single highest-leverage next step.
+       SUPPORTING REFERENCE (college application prep)
+       {bin_context["college_prep"]}
+
+    7. Career fit -- judge how well their intended majors, interest areas, and working style
        actually cohere into a defensible career direction, and name one concrete way to test
        that direction before committing further (e.g. a specific kind of internship, project,
        or person to talk to).
+       SUPPORTING REFERENCE (career fit)
+       {bin_context["career"]}
 
     Return your analysis as a JSON object with exactly these keys, each a short (5-8 sentence)
     recommendation string: testing, clubs, extracurriculars, competitions, courses, career,
